@@ -1,8 +1,18 @@
-# Reproducing IA^3 Paper: Parallelizing Irregular Computations for Molecular Docking
+# Artifacts IA^3 Paper: Parallelizing Irregular Computations for Molecular Docking
 
-Artifacts for paper.
+Intended for _Artifacts Evaluation_.
 
+This repository consists of:
+
+* Scripts for re-running experiments described in paper
+	* See root folder
+* Additional files containing parameters for AutoDock
+	* See [docking parameter files](./dpf_autodock426) folder
+* Output examples
+	* See [docking log](./dlg_examples) folder
 # Downloads
+
+Required programs and inputs:
 
 * AutoDock-GPU
 	*  https://github.com/ccsb-scripps/AutoDock-GPU
