@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/302362741.svg)](https://zenodo.org/badge/latestdoi/302362741)
+
 # Artifacts IA^3 2020 Paper: Parallelizing Irregular Computations for Molecular Docking
 
 Intended for _Artifacts Evaluation_.
