@@ -1,14 +1,14 @@
-# Artifacts IA^3 Paper: Parallelizing Irregular Computations for Molecular Docking
+# Artifacts IA^3 2020 Paper: Parallelizing Irregular Computations for Molecular Docking
 
 Intended for _Artifacts Evaluation_.
 
-This repository consists of:
+This repository contains:
 
 * Scripts for re-running experiments described in paper
-	* See root folder
+	* See bash scripts withtin root folder
 * Additional files containing parameters for AutoDock
 	* See [docking parameter files](./dpf_autodock426) folder
-* Output examples
+* Output examples of both AutoDock and AutoDock-GPU
 	* See [docking log](./dlg_examples) folder
 # Downloads
 
