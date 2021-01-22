@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# NUMWI Experiments on TitanV
-# Use commit: eed190fd
+set -o xtrace
+
+source parcosi_dataset.sh
+
 # Make sure "results" folder exists
 
 # NUMWI set
 NUMWI_SET=(16 32 64 128 256)
-
-# PARCOSI dataset
-#PARCOSI_DATASET=(1u4d 1xoz 1yv3 1owe 1oyt 1ywr 1t46 2bm2 1mzc 1r55 5wlo 1kzk 3s8o 5kao 1hfs 1jyq 2d1o 3drf 4er4 3er5)
-PARCOSI_DATASET=(1u4d 1yv3)
 
 # LSMET set
 LSMET_SET=(sw ad)
@@ -38,7 +36,6 @@ make DEVICE=OCLGPU NUMWI=256
 RESULTS_DIR="results_v100_numwi"
 mkdir -p ${RESULTS_DIR}
 
-# SW
 for inumwi in ${NUMWI_SET[@]}; do
     echo " "
     for ipdb in ${PARCOSI_DATASET[@]}; do    

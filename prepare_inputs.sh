@@ -1,7 +1,3 @@
-# Script that prepares molecular inputs.
-# Automatically pulls git submodule first.
-# This should be run at the very beginning.
-
 #!/bin/bash
 
 set -o xtrace
