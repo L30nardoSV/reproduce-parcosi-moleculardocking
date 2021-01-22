@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source parcosi_dataset.sh
-source evaluate.sh
+source numwi.sh
 
 ADGPU_OPENCL_BINS=(./autodock_gpu_16wi ./autodock_gpu_32wi ./autodock_gpu_64wi ./autodock_gpu_128wi ./autodock_gpu_256wi)
 
@@ -58,6 +58,6 @@ select_device
 verify_binaries_exist_in_local_folder
 if [ "${TEST_GPU}" == "Y" ]; then
     for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
-        evaluate ${i_adgpu_bin} ${RES_GPU_DIR}
+        numwi ${i_adgpu_bin} ${RES_GPU_DIR}
     done
 fi
