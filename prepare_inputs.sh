@@ -3,5 +3,5 @@
 set -o xtrace
 
 # Pulling PARCOSI dataset
-# Source: https://github.com/L30nardoSV/AD-GPU_miniset_20
+# Source: https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git
 git submodule update --init --recursive

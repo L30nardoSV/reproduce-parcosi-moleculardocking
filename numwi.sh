@@ -13,7 +13,7 @@ NEV=2500000
 NGEN=99999
 NRUN=100
 PSIZE=150
-INPUTS_DIR=./AD-GPU_miniset_20/data
+INPUTS_DIR=./ad-gpu_miniset_20/data
 
 function numwi() {
     for ipdb in ${PARCOSI_DATASET[@]}; do    
