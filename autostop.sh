@@ -15,6 +15,7 @@ function numwi() {
             -xraylfile ${INPUTS_DIR}/${ipdb}/flex-xray.pdbqt \
             -ffile ${INPUTS_DIR}/${ipdb}/protein.maps.fld \
             -xmloutput 0 \
+            -autostop 1 \
             -resnam $2/$1_${ipdb}_${ilsmet}_"`date +"%Y-%m-%d-%H:%M"`"
         done
     done

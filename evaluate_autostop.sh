@@ -1,9 +1,10 @@
 #!/bin/bash
 
 source parcosi_dataset.sh
-source numwi.sh
+source autostop.sh
 
-ADGPU_OPENCL_BINS=(./autodock_gpu_16wi ./autodock_gpu_32wi ./autodock_gpu_64wi ./autodock_gpu_128wi ./autodock_gpu_256wi)
+#ADGPU_OPENCL_BINS=(./autodock_gpu_16wi ./autodock_gpu_32wi ./autodock_gpu_64wi ./autodock_gpu_128wi ./autodock_gpu_256wi)
+ADGPU_OPENCL_BINS=(./autodock_gpu_64wi)
 
 # Bash functions
 function select_device() {
@@ -16,7 +17,7 @@ function select_device() {
     echo " "
     echo "${info}: Type a meaningful label for your GPU device."
     read -p "E.g.: [v100] [a100] [mi50] [mi100] [vega64] [etc]: " LABEL_GPU
-    RES_GPU_DIR=results_numwi_${LABEL_GPU}
+    RES_GPU_DIR=results_autostop_${LABEL_GPU}
     if [ ! -d ${RES_GPU_DIR} ]; then
       mkdir ${RES_GPU_DIR}
     else
@@ -57,9 +58,9 @@ function verify_binaries_exist_in_local_folder() {
 select_device
 verify_binaries_exist_in_local_folder
 
-# numwi test
+# autostop test
 if [ "${TEST_GPU}" == "Y" ]; then
     for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
-        numwi ${i_adgpu_bin} ${RES_GPU_DIR}
+        autostop ${i_adgpu_bin} ${RES_GPU_DIR}
     done
 fi
