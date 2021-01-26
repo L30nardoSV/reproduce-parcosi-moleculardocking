@@ -2,7 +2,7 @@
 
 source common_params.sh
 
-function numwi() {
+function autostop() {
     for ipdb in ${PARCOSI_DATASET[@]}; do    
         echo " "
         for ilsmet in ${LSMET_SET[@]}; do    
