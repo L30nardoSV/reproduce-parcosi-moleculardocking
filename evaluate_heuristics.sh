@@ -3,8 +3,8 @@
 source parcosi_dataset.sh
 source heuristics.sh
 
-#ADGPU_OPENCL_BINS=(./autodock_gpu_16wi ./autodock_gpu_32wi ./autodock_gpu_64wi ./autodock_gpu_128wi ./autodock_gpu_256wi)
-ADGPU_OPENCL_BINS=(./autodock_gpu_64wi)
+ADGPU_OPENCL_BINS=(./autodock_gpu_64wi_ocl)
+ADGPU_CUDA_BINS=(./autodock_gpu_64wi_cuda)
 
 # Bash functions
 function select_device() {
