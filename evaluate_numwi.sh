@@ -3,7 +3,7 @@
 source parcosi_dataset.sh
 source numwi.sh
 
-ADGPU_OPENCL_BINS=(./autodock_gpu_16wi ./autodock_gpu_32wi ./autodock_gpu_64wi ./autodock_gpu_128wi ./autodock_gpu_256wi)
+ADGPU_OPENCL_BINS=(./autodock_gpu_32wi ./autodock_gpu_64wi ./autodock_gpu_128wi ./autodock_gpu_256wi)
 
 # Bash functions
 function select_device() {
