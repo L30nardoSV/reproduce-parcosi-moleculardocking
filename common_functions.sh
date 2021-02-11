@@ -10,6 +10,10 @@ function select_device() {
   echo "${info}: CUDA? "
   read -p "[Y]: " TEST_CUDA
 
+  DEVNUM=${DEVNUM: 1}
+  echo "${info}: DEVNUM? (starts at 1)"
+  read -p "[<1> or <2> or <3> or etc]: " DEVNUM
+
   if [ "${TEST_GPU}" == "Y" ]; then
     echo " "
     echo "${info}: Type a meaningful label for your GPU device."

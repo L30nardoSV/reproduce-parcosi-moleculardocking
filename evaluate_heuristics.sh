@@ -15,11 +15,11 @@ verify_binaries_exist_in_local_folder
 if [ "${TEST_GPU}" == "Y" ]; then
   if [ "${TEST_CUDA}" == "Y" ]; then
     for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
-      heuristics ${i_adgpu_bin} ${RES_GPU_DIR}
+      heuristics ${i_adgpu_bin} ${RES_GPU_DIR} ${DEVNUM}
     done
   else
     for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
-      heuristics ${i_adgpu_bin} ${RES_GPU_DIR}
+      heuristics ${i_adgpu_bin} ${RES_GPU_DIR} ${DEVNUM}
     done
   fi
 fi

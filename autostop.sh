@@ -22,7 +22,8 @@ function autostop() {
                 -xmloutput 0 \
                 -autostop 1 \
                 -asfreq ${iasfreq} \
-                -resnam $2/$1_${ipdb}_${ilsmet}_asf-${iasfreq}_"`date +"%Y-%m-%d-%H:%M"`"
+                -resnam $2/$1_${ipdb}_${ilsmet}_asf-${iasfreq}_"`date +"%Y-%m-%d-%H:%M"`" \
+                -devnum ${DEVNUM}
             done
         done
     done
