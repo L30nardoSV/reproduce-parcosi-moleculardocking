@@ -16,7 +16,7 @@ function heuristics() {
             -ffile ${INPUTS_DIR}/${ipdb}/protein.maps.fld \
             -xmloutput 0 \
             -heuristics 1 \
-            -resnam $2/$1_${ipdb}_${ilsmet}_"`date +"%Y-%m-%d-%H:%M"`" \
+            -resnam $2/$1_${ipdb}_${ilsmet}_heur_"`date +"%Y-%m-%d-%H:%M"`" \
             -devnum ${DEVNUM}
         done
     done
