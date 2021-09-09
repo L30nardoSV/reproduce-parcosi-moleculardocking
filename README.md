@@ -12,7 +12,7 @@ PARCOSI (under revision).
 
 ### 1. Program preparation
 
-Clone the AutoDock-GPU v1.3 (used in this paper):
+Clone the [AutoDock-GPU v1.3](https://github.com/ccsb-scripps/AutoDock-GPU/releases/tag/v1.3) (used in this paper):
 
 ```
 > git clone --depth 1 --branch v1.3 https://github.com/ccsb-scripps/AutoDock-GPU.git
