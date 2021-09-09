@@ -37,23 +37,23 @@ Compile AutoDock-GPU and rename the produced binaries conveniently (for the scri
 ```
 > make DEVICE=OCLGPU NUMWI=32
 > mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_ocl
-... (NUMWI = {32, 64, 128, 256})
+... Do the same for NUMWI = {32, 64, 128, 256}
 
 > make DEVICE=GPU NUMWI=256
 > mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda
-... (NUMWI = {32, 64, 128, 256})
+... Do the same for NUMWI = {32, 64, 128, 256}
 ```
 
-Move above binaries into the test folder (repeat for all cases above):
+Move above binaries into the test folder:
 
 ```
 > cp bin/autodock_gpu_64wi_ocl reproduce-parcosi-moleculardocking/
-...
+... Repeat for all OpenCL/CUDA cases above
 ```
 
 ### 2. Performance evaluation
 
-Input dataset is provided as a git submodule. To automatically clone [that repository](https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git): 
+Input dataset is provided as a git submodule. Clone [that repository](https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git) automatically: 
 
 ```
 > ./prepare_inputs.sh
