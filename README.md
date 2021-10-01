@@ -2,11 +2,9 @@
 
 This repository contains the scripts and additional files for reproducing the results presented in the paper:
 
-_"Title"_ 
+_"Benchmarking the Performance of Irregular Computations in AutoDock-GPU MolecularDocking"_ 
 
-submitted to 
-
-PARCOSI (under revision).
+submitted to PARCO-SI (under revision).
 
 ## Instructions
 
