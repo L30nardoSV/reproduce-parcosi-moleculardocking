@@ -1,10 +1,6 @@
-# Reproducing PARCOSI: _Title_
+# Reproducing PARCO-SI Paper: _Benchmarking the Performance of Irregular Computations in AutoDock-GPU Molecular Docking_ 
 
-This repository contains the scripts and additional files for reproducing the results presented in the paper:
-
-_"Benchmarking the Performance of Irregular Computations in AutoDock-GPU MolecularDocking"_ 
-
-submitted to PARCO-SI (under revision).
+This repository contains the scripts and additional files for reproducing the results presented in the paper submitted to PARCO-SI (currently under revision).
 
 ## Instructions
 
