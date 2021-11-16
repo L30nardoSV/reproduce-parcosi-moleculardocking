@@ -1,4 +1,4 @@
-# Reproducing Paper: _Benchmarking the Performance of Irregular Computations in AutoDock-GPU Molecular Docking_ 
+# Reproducing paper: _Benchmarking the Performance of Irregular Computations in AutoDock-GPU Molecular Docking_ 
 
 This repository contains the scripts and additional files for reproducing the results presented in the paper accepted at Parallel Computing:
 
