@@ -6,9 +6,9 @@ source ${AUXILIARY_SCRIPTS_DIR}/common_params.sh
 
 function numwi() {
     for ipdb in ${EXPERIMENTS_DATASET[@]}; do
-        echo " "
+        printf '%s\n' " "
         for ilsmet in ${LSMET_SET[@]}; do
-            echo " "
+            printf '%s\n' " "
             $1 \
             -lsmet ${ilsmet} \
             -lsit ${LSIT} -lsrat ${LSRAT} -smooth ${SMOOTH} \
