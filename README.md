@@ -16,10 +16,15 @@ Clone the AutoDock-GPU code repository, which contains DPCPP as well as CUDA and
 
 ```
 git clone https://github.com/emascarenhas/AutoDock-GPU.git
-cd AutoDock-GPU
 ```
 
 ### 2. Compilation
+
+Move into the code folder:
+
+```
+cd AutoDock-GPU
+```
 
 #### 2.1. Compile DPCPP version
 
@@ -71,13 +76,19 @@ make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi
 
 ### 3. Evaluation
 
-Input dataset is provided as a git submodule. Clone [that repository](https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git) automatically: 
+Move into the experiments folder:
+
+```
+cd experiments-adgpu-dpcpp
+```
+
+Clone [git submodule repository containing input data-set](https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git) automatically: 
 
 ```
 ./prepare_inputs.sh
 ```
 
-Evaluate the performance for different OpenCL work group sizes:  
+Evaluate the performance for different {DPCPP work-group} / {CUDA block} / {OpenCL work-group} sizes:  
 
 ```
 ./evaluate_numwi.sh
