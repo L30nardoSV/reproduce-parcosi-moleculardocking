@@ -59,36 +59,20 @@ export GPU_INCLUDE_PATH=/usr/local/cuda/include
 export GPU_LIBRARY_PATH=/usr/local/cuda/lib64
 ```
 
-Compile CUDA and OpenCL codes and rename the produced binaries conveniently (for the scripts to work):
+Compile CUDA and OpenCL codes, rename the produced binaries conveniently (for the experiment scripts to work), and move generated binaries into the experiments folder:
 
 ```
-make DEVICE=GPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda
-make DEVICE=GPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_cuda
-make DEVICE=GPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_cuda
-make DEVICE=GPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda
-```
-
-```
-make DEVICE=OCLGPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_ocl
-make DEVICE=OCLGPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_ocl
-make DEVICE=OCLGPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_ocl
-make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_ocl
-```
-
-Move above binaries into the experiments folder:
-
-```
-cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
-cp bin/autodock_gpu_64wi_cuda ../experiments-adgpu-dpcpp/
-cp bin/autodock_gpu_128wi_cuda ../experiments-adgpu-dpcpp/
-cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda && cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_cuda && cp bin/autodock_gpu_64wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_cuda && cp bin/autodock_gpu_128wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda && cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
 ```
 
 ```
-cp bin/autodock_gpu_32wi_ocl ../experiments-adgpu-dpcpp/
-cp bin/autodock_gpu_64wi_ocl ../experiments-adgpu-dpcpp/
-cp bin/autodock_gpu_128wi_ocl ../experiments-adgpu-dpcpp/
-cp bin/autodock_gpu_256wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=OCLGPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_ocl && cp bin/autodock_gpu_32wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=OCLGPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_ocl && cp bin/autodock_gpu_64wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=OCLGPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_ocl && cp bin/autodock_gpu_128wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_ocl && cp bin/autodock_gpu_256wi_ocl ../experiments-adgpu-dpcpp/
 ```
 
 ### 3. Performance evaluation
