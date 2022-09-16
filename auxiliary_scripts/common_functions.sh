@@ -49,7 +49,7 @@ function select_device() {
     printf '%s\n' " -> \"${RES_GPU_DIR}\" folder will store results"
     printf '%s\n' " -> \"${RES_GPU_DIR}.log\" file will contain stderr and stdout logs"
   else
-    printf '%s\n' " -> \"${RES_GPU_DIR}\" folder already exists. Be cautios!"
+    printf '%s\n' " -> \"${RES_GPU_DIR}\" folder already exists. Be cautious!"
   fi
 }
 
