@@ -6,14 +6,14 @@ This repository contains the scripts and additional files for experiments.
 
 ### 1. Program preparation
 
-Clone the repository including DPCPP as well as CUDA and OpenCL versions
+Clone the AutoDock code repository, which contains DPCPP as well as CUDA and OpenCL versions
 
 ```
-git clone --depth 1 --branch develop https://github.com/ccsb-scripps/AutoDock-GPU.git
+git clone https://github.com/emascarenhas/AutoDock-GPU.git
 cd AutoDock-GPU
 ```
 
-Clone _this_ repository:
+Clone _this_ experiments repository:
 
 ```
 git clone https://github.com/LeoCollab/experiments-adgpu-dpcpp.git
