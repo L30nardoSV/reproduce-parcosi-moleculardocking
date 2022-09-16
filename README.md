@@ -23,7 +23,7 @@ git clone https://github.com/LeoCollab/experiments-adgpu-dpcpp.git
 
 #### DPCPP version
 
-Set environment variables by executing initialization script (not required on DevCloud):
+Set environment variables by executing initialization script (**not** required on DevCloud):
 
 ```
 source /opt/intel/oneapi/setvars.sh
@@ -32,14 +32,14 @@ source /opt/intel/oneapi/setvars.sh
 Compile DPCPP code and rename the produced binaries conveniently (for the scripts to work):
 
 ```
-make DEVICE=XeGPU NUMWI=256
+make DEVICE=XeGPU NUMWI=32
 ... Do the same for NUMWI = {32, 64, 128, 256}
 ```
 
 Move above binaries into the test folder:
 
 ```
-cp bin/autodock_xegpu_64wi experiments-adgpu-dpcpp/
+cp bin/autodock_xegpu_32wi experiments-adgpu-dpcpp/
 ... Repeat for all DPCPP cases above
 ```
 
@@ -61,8 +61,8 @@ export GPU_LIBRARY_PATH=/usr/local/cuda/lib64
 Compile CUDA and OpenCL codes and rename the produced binaries conveniently (for the scripts to work):
 
 ```
-make DEVICE=GPU NUMWI=256
-mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda
+make DEVICE=GPU NUMWI=32
+mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda
 ... Do the same for NUMWI = {32, 64, 128, 256}
 ```
 
@@ -75,7 +75,7 @@ mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_ocl
 Move above binaries into the test folder:
 
 ```
-cp bin/autodock_gpu_64wi_ocl experiments-adgpu-dpcpp/
+cp bin/autodock_gpu_32wi_ocl experiments-adgpu-dpcpp/
 ... Repeat for all OpenCL/CUDA cases above
 ```
 
