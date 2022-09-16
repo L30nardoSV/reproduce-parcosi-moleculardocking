@@ -20,8 +20,12 @@ if [ "${TEST_GPU}" == "Y" ]; then
     for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
       numwi ${i_adgpu_bin}
     done
-  else
+  elif [ "${TEST_OPENCL}" == "Y" ]; then
     for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
+      numwi ${i_adgpu_bin}
+    done
+  elif [ "${TEST_DPCPP}" == "Y" ]; then
+    for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
       numwi ${i_adgpu_bin}
     done
   fi
