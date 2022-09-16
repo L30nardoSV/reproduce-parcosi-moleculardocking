@@ -1,17 +1,10 @@
 # Experiments AD-GPU DPCPP
 
-This repository contains the scripts and additional files for experiments.
+This repository contains instructions and corresponding scripts for performing experiments.
 
 ## Instructions
 
 ### 1. Program preparation
-
-Clone the AutoDock-GPU code repository, which contains DPCPP as well as CUDA and OpenCL versions
-
-```
-git clone https://github.com/emascarenhas/AutoDock-GPU.git
-cd AutoDock-GPU
-```
 
 Clone _this_ experiments repository:
 
@@ -19,28 +12,39 @@ Clone _this_ experiments repository:
 git clone https://github.com/LeoCollab/experiments-adgpu-dpcpp.git
 ```
 
+Clone the AutoDock-GPU code repository, which contains DPCPP as well as CUDA and OpenCL versions:
+
+```
+git clone https://github.com/emascarenhas/AutoDock-GPU.git
+cd AutoDock-GPU
+```
+
 ### 2. Program compilation
 
 #### 2.1. Compile DPCPP version
 
-Set environment variables by executing initialization script (**not** required on DevCloud):
+Set the required oneAPI environment variables by executing initialization script (**NOT** required on DevCloud):
 
 ```
 source /opt/intel/oneapi/setvars.sh
 ```
 
-Compile DPCPP code and rename the produced binaries conveniently (for the scripts to work):
+Compile DPCPP code:
 
 ```
 make DEVICE=XeGPU NUMWI=32
-... Do the same for NUMWI = {32, 64, 128, 256}
+make DEVICE=XeGPU NUMWI=64
+make DEVICE=XeGPU NUMWI=128
+make DEVICE=XeGPU NUMWI=256
 ```
 
 Move above binaries into the test folder:
 
 ```
-cp bin/autodock_xegpu_32wi experiments-adgpu-dpcpp/
-... Repeat for all DPCPP cases above
+cp bin/autodock_xegpu_32wi ../experiments-adgpu-dpcpp/
+cp bin/autodock_xegpu_64wi ../experiments-adgpu-dpcpp/
+cp bin/autodock_xegpu_128wi ../experiments-adgpu-dpcpp/
+cp bin/autodock_xegpu_256wi ../experiments-adgpu-dpcpp/
 ```
 
 #### 2.2. Compile CUDA and OpenCL versions
