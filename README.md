@@ -21,7 +21,7 @@ git clone https://github.com/LeoCollab/experiments-adgpu-dpcpp.git
 
 ### 2. Program compilation
 
-#### DPCPP version
+#### 2.1. Compile DPCPP version
 
 Set environment variables by executing initialization script (**not** required on DevCloud):
 
@@ -43,7 +43,7 @@ cp bin/autodock_xegpu_32wi experiments-adgpu-dpcpp/
 ... Repeat for all DPCPP cases above
 ```
 
-#### CUDA and OpenCL versions
+#### 2.2. Compile CUDA and OpenCL versions
 
 Switch to original git branch holding equivalent CUDA and OpenCL versions (used as baseline):
 
