@@ -6,7 +6,7 @@ This repository contains the scripts and additional files for experiments.
 
 ### 1. Program preparation
 
-Clone the AutoDock code repository, which contains DPCPP as well as CUDA and OpenCL versions
+Clone the AutoDock-GPU code repository, which contains DPCPP as well as CUDA and OpenCL versions
 
 ```
 git clone https://github.com/emascarenhas/AutoDock-GPU.git
