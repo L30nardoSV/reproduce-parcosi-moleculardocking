@@ -1,5 +1,4 @@
 #!/bin/bash
-(
 
 AUXILIARY_SCRIPTS_DIR=auxiliary_scripts
 
