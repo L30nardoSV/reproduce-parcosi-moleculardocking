@@ -40,7 +40,7 @@ make DEVICE=XeGPU NUMWI=256 && cp bin/autodock_xegpu_256wi ../experiments-adgpu-
 
 #### 2.2. Compile CUDA and OpenCL versions
 
-Switch to original git branch holding equivalent CUDA and OpenCL versions (DPCPP code was translated from this CUDA code):
+Switch to git branch holding original CUDA and OpenCL versions (DPCPP code was translated from this equivalent CUDA code):
 
 ```
 git checkout v1.5.3
