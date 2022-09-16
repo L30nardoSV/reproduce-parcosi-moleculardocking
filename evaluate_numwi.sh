@@ -15,6 +15,8 @@ ADGPU_DPCPP_BINS=(./autodock_xegpu_32wi ./autodock_xegpu_64wi ./autodock_xegpu_1
 select_device
 verify_binaries_exist_in_local_folder
 
+(
+
 # numwi test
 if [ "${TEST_GPU}" == "Y" ]; then
   if [ "${TEST_CUDA}" == "Y" ]; then
