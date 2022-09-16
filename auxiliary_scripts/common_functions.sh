@@ -48,7 +48,6 @@ function select_device() {
   echo " "
   echo "Type a meaningful label for your GPU device."
   read -p "E.g.: [v100] [a100] [mi50] [mi100] [vega64] [etc]: " LABEL_GPU
-
   if [ "${TEST_VERSION}" == "c" ]; then
     RES_GPU_DIR=results_numwi_cuda_${LABEL_GPU}
   elif [ "${TEST_VERSION}" == "o" ]; then
@@ -59,6 +58,8 @@ function select_device() {
 
   if [ ! -d ${RES_GPU_DIR} ]; then
     mkdir ${RES_GPU_DIR}
+    echo "Folder \"${RES_GPU_DIR}\" will store results"
+    echo "File \"${RES_GPU_DIR}.log\" will contain stderr and stdout logs"
   else
     echo "Be cautious. Folder \"${RES_GPU_DIR}\" for storing results already exists!"
   fi
