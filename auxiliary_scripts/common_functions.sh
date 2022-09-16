@@ -62,18 +62,6 @@ function select_device() {
   else
     echo "Be cautious. Folder \"${RES_GPU_DIR}\" for storing results already exists!"
   fi
-
-  echo " "
-  echo "Device(s) to be tested: "
-  if [ "${TEST_GPU}" == "Y" ]; then
-    if [ "${TEST_VERSION}" == "c" ]; then
-      echo "\"${LABEL_GPU}\" GPU (CUDA)"
-    elif [ "${TEST_VERSION}" == "o" ]; then
-      echo "\"${LABEL_GPU}\" GPU (OpenCL)"
-    elif [ "${TEST_VERSION}" == "d" ]; then
-      echo "\"${LABEL_GPU}\" GPU (DPC++)"
-    fi
-  fi
 }
 
 function verify_binaries_exist_in_local_folder() {
