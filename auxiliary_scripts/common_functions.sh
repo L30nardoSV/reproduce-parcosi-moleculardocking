@@ -3,7 +3,7 @@
 # Bash functions
 function select_device() {
   echo " "
-  echo "Selecting device to test with AutoDock-GPU."
+  echo "[FUNCTION] Selecting device to test with AutoDock-GPU."
   echo " "
   echo "GPU? "
   read -p "[Y]: " TEST_GPU
@@ -15,7 +15,7 @@ function select_device() {
 
   DEVNUM=${DEVNUM: 1}
   echo " "
-  echo "DEVNUM? (starts at 1)"
+  echo "DEVNUM? (starts at 1, choose preferably 1)"
   read -p "[<1> or <2> or <3> or etc]: " DEVNUM
   case $DEVNUM in
     (*[^0-9]*)
@@ -27,7 +27,7 @@ function select_device() {
 		echo "Terminated."
 		exit 9999;;
     (*)
-		printf '%s\n' "A number";;
+		printf '%s\n' "OK. It is a number";;
   esac
 
   echo " "
@@ -78,7 +78,7 @@ function select_device() {
 
 function verify_binaries_exist_in_local_folder() {
   echo " "
-  echo "Verifying that AutoDock-GPU binaries are present in current folder."
+  echo "[FUNCTION] Verifying that AutoDock-GPU binaries are present in current folder."
   echo " "
   if [ "${TEST_GPU}" == "Y" ]; then
     if [ "${TEST_VERSION}" == "c" ]; then
