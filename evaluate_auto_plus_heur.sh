@@ -1,8 +1,10 @@
 #!/bin/bash
 
-source common_functions.sh
-source experiments_dataset.sh
-source auto_plus_heur.sh
+AUXILIARY_SCRIPTS_DIR=auxiliary_scripts
+
+source ${AUXILIARY_SCRIPTS_DIR}/common_functions.sh
+source ${AUXILIARY_SCRIPTS_DIR}/experiments_dataset.sh
+source ${AUXILIARY_SCRIPTS_DIR}/auto_plus_heur.sh
 
 ADGPU_OPENCL_BINS=(./autodock_gpu_64wi_ocl)
 ADGPU_CUDA_BINS=(./autodock_gpu_64wi_cuda)

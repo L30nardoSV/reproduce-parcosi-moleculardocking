@@ -1,8 +1,10 @@
 #!/bin/bash
 
-source common_functions.sh
-source experiments_dataset.sh
-source numwi.sh
+AUXILIARY_SCRIPTS_DIR=auxiliary_scripts
+
+source ${AUXILIARY_SCRIPTS_DIR}/common_functions.sh
+source ${AUXILIARY_SCRIPTS_DIR}/experiments_dataset.sh
+source ${AUXILIARY_SCRIPTS_DIR}/numwi.sh
 
 ADGPU_OPENCL_BINS=(./autodock_gpu_32wi_ocl ./autodock_gpu_64wi_ocl ./autodock_gpu_128wi_ocl ./autodock_gpu_256wi_ocl)
 ADGPU_CUDA_BINS=(./autodock_gpu_32wi_cuda ./autodock_gpu_64wi_cuda ./autodock_gpu_128wi_cuda ./autodock_gpu_256wi_cuda)
