@@ -60,7 +60,7 @@ function verify_binaries_exist_in_local_folder() {
     if [ "${TEST_VERSION}" == "c" ]; then
       for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
         if [ -f "${i_adgpu_bin}" ]; then
-          printf '\n%s\n' "\"${i_adgpu_bin}\" exists."
+          printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
         else
           printf '%s\n' " -> Make sure CUDA binary is copied over first"
           printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
@@ -69,7 +69,7 @@ function verify_binaries_exist_in_local_folder() {
     elif [ "${TEST_VERSION}" == "o" ]; then
       for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
         if [ -f "${i_adgpu_bin}" ]; then
-          printf '\n%s\n' "\"${i_adgpu_bin}\" exists."
+          printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
         else
           printf '%s\n' " -> Make sure OpenCL binary is copied over first"
           printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
@@ -78,7 +78,7 @@ function verify_binaries_exist_in_local_folder() {
     elif [ "${TEST_VERSION}" == "d" ]; then
       for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
         if [ -f "${i_adgpu_bin}" ]; then
-          printf '\n%s\n' "\"${i_adgpu_bin}\" exists."
+          printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
         else
           printf '%s\n' " -> Make sure DPC++ binary is copied over first"
           printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
