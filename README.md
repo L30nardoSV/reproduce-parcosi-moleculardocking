@@ -29,22 +29,13 @@ Set the required oneAPI environment variables by executing initialization script
 source /opt/intel/oneapi/setvars.sh
 ```
 
-Compile DPCPP code:
+Compile DPCPP code, and move generated binaries into the experiments folder:
 
 ```
-make DEVICE=XeGPU NUMWI=32
-make DEVICE=XeGPU NUMWI=64
-make DEVICE=XeGPU NUMWI=128
-make DEVICE=XeGPU NUMWI=256
-```
-
-Move above binaries into the test folder:
-
-```
-cp bin/autodock_xegpu_32wi ../experiments-adgpu-dpcpp/
-cp bin/autodock_xegpu_64wi ../experiments-adgpu-dpcpp/
-cp bin/autodock_xegpu_128wi ../experiments-adgpu-dpcpp/
-cp bin/autodock_xegpu_256wi ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=32 && cp bin/autodock_xegpu_32wi ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=64 && cp bin/autodock_xegpu_64wi ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=128 && cp bin/autodock_xegpu_128wi ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=256 && cp bin/autodock_xegpu_256wi ../experiments-adgpu-dpcpp/
 ```
 
 #### 2.2. Compile CUDA and OpenCL versions
@@ -84,7 +75,7 @@ make DEVICE=OCLGPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi
 make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_ocl
 ```
 
-Move above binaries into the test folder:
+Move above binaries into the experiments folder:
 
 ```
 cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
