@@ -4,7 +4,7 @@ This repository contains instructions and corresponding scripts for performing e
 
 ## Instructions
 
-### 1. Program preparation
+### 1. Preparation
 
 Clone _this_ experiments repository:
 
@@ -19,7 +19,7 @@ git clone https://github.com/emascarenhas/AutoDock-GPU.git
 cd AutoDock-GPU
 ```
 
-### 2. Program compilation
+### 2. Compilation
 
 #### 2.1. Compile DPCPP version
 
@@ -69,7 +69,7 @@ make DEVICE=OCLGPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi
 make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_ocl && cp bin/autodock_gpu_256wi_ocl ../experiments-adgpu-dpcpp/
 ```
 
-### 3. Performance evaluation
+### 3. Evaluation
 
 Input dataset is provided as a git submodule. Clone [that repository](https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git) automatically: 
 
