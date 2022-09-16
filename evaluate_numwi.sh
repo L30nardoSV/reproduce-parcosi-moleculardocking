@@ -1,4 +1,5 @@
 #!/bin/bash
+(
 
 AUXILIARY_SCRIPTS_DIR=auxiliary_scripts
 
@@ -30,3 +31,5 @@ if [ "${TEST_GPU}" == "Y" ]; then
     done
   fi
 fi
+
+) 2>&1 | tee ${RES_GPU_DIR}.log
