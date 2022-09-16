@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source common_functions.sh
-source parcosi_dataset.sh
+source experiments_dataset.sh
 source numwi.sh
 
 ADGPU_OPENCL_BINS=(./autodock_gpu_32wi_ocl ./autodock_gpu_64wi_ocl ./autodock_gpu_128wi_ocl ./autodock_gpu_256wi_ocl)

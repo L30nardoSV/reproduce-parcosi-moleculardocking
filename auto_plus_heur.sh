@@ -3,9 +3,9 @@
 source common_params.sh
 
 function auto_plus_heur() {
-    for ipdb in ${PARCOSI_DATASET[@]}; do    
+    for ipdb in ${EXPERIMENTS_DATASET[@]}; do
         echo " "
-        for ilsmet in ${LSMET_SET[@]}; do    
+        for ilsmet in ${LSMET_SET[@]}; do
             echo " "
             $1 \
             -lsmet ${ilsmet} \

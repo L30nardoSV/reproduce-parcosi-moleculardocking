@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source common_functions.sh
-source parcosi_dataset.sh
+source experiments_dataset.sh
 source auto_plus_heur.sh
 
 ADGPU_OPENCL_BINS=(./autodock_gpu_64wi_ocl)
