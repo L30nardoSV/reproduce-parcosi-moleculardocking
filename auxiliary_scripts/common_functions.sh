@@ -7,12 +7,8 @@ function select_device() {
   echo " "
   echo "${info}: GPU? "
   read -p "[Y]: " TEST_GPU
-  echo "${info}: CUDA? "
-  read -p "[Y]: " TEST_CUDA
-  echo "${info}: OpenCL? "
-  read -p "[Y]: " TEST_OPENCL
-  echo "${info}: DPC++? "
-  read -p "[Y]: " TEST_DPCPP
+  echo "${info}: Select one code version."
+  read -p "CUDA [c], OpenCL [o], or DPCPP [d]: " TEST_VERSION
 
   DEVNUM=${DEVNUM: 1}
   echo "${info}: DEVNUM? (starts at 1)"
@@ -23,11 +19,11 @@ function select_device() {
     echo "${info}: Type a meaningful label for your GPU device."
     read -p "E.g.: [v100] [a100] [mi50] [mi100] [vega64] [etc]: " LABEL_GPU
 
-    if [ "${TEST_CUDA}" == "Y" ]; then
+    if [ "${TEST_VERSION}" == "c" ]; then
       RES_GPU_DIR=results_numwi_cuda_${LABEL_GPU}
-	elif [ "${TEST_OPENCL}" == "Y" ]; then
+	elif [ "${TEST_VERSION}" == "o" ]; then
       RES_GPU_DIR=results_numwi_opencl_${LABEL_GPU}
-	elif [ "${TEST_DPCPP}" == "Y" ]; then
+	elif [ "${TEST_VERSION}" == "d" ]; then
       RES_GPU_DIR=results_numwi_dpcpp_${LABEL_GPU}
     else
       echo "${info}: No code version chosen."
@@ -45,11 +41,11 @@ function select_device() {
   echo " "
   echo "${info}: Device(s) to be tested: "
   if [ "${TEST_GPU}" == "Y" ]; then
-    if [ "${TEST_CUDA}" == "Y" ]; then
+    if [ "${TEST_VERSION}" == "c" ]; then
       echo "\"${LABEL_GPU}\" GPU (CUDA)"
-    elif [ "${TEST_OPENCL}" == "Y" ]; then
+    elif [ "${TEST_VERSION}" == "o" ]; then
       echo "\"${LABEL_GPU}\" GPU (OpenCL)"
-    elif [ "${TEST_DPCPP}" == "Y" ]; then
+    elif [ "${TEST_VERSION}" == "d" ]; then
       echo "\"${LABEL_GPU}\" GPU (DPC++)"
     fi
   fi
@@ -65,7 +61,7 @@ function verify_binaries_exist_in_local_folder() {
   echo "${info}: Verifying that AutoDock-GPU binaries are present in current folder."
   echo " "
   if [ "${TEST_GPU}" == "Y" ]; then
-    if [ "${TEST_CUDA}" == "Y" ]; then
+    if [ "${TEST_VERSION}" == "c" ]; then
       for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
         if [ -f "${i_adgpu_bin}" ]; then
           echo "${info}: \"${i_adgpu_bin}\" exists."
@@ -75,7 +71,7 @@ function verify_binaries_exist_in_local_folder() {
           exit 9999 # Die with error code 9999
         fi
       done
-    elif [ "${TEST_OPENCL}" == "Y" ]; then
+    elif [ "${TEST_VERSION}" == "o" ]; then
       for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
         if [ -f "${i_adgpu_bin}" ]; then
           echo "${info}: \"${i_adgpu_bin}\" exists."
@@ -85,7 +81,7 @@ function verify_binaries_exist_in_local_folder() {
           exit 9999 # Die with error code 9999
         fi
       done
-    elif [ "${TEST_DPCPP}" == "Y" ]; then
+    elif [ "${TEST_VERSION}" == "d" ]; then
       for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
         if [ -f "${i_adgpu_bin}" ]; then
           echo "${info}: \"${i_adgpu_bin}\" exists."
