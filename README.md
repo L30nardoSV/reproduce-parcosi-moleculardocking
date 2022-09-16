@@ -62,20 +62,6 @@ Evaluate the performance for different OpenCL work group sizes:
 > ./evaluate_numwi.sh
 ```
 
-
-Evaluate the impact of enabling the _autostop_ option: 
-
-```
-> ./evaluate_autostop.sh
-```
-
-Evaluate the impact of the _heuristic_ option:
-
-```
-> ./evaluate_heuristics.sh
-```
-
-
 Evaluate the impact of combining of both _autostop_ and _heuristic_ options: 
 
 ```
