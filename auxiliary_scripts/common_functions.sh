@@ -16,7 +16,7 @@ function select_device() {
   DEVNUM=${DEVNUM: 1}
   echo " "
   echo "DEVNUM? (starts at 1, choose preferably 1)"
-  read -p "[<1> or <2> or <3> or etc]: " DEVNUM
+  read -p "[1] or [2] or [3] or [...]: " DEVNUM
   case $DEVNUM in
     (*[^0-9]*)
 		printf '%s\n' "Not a number"
@@ -31,16 +31,16 @@ function select_device() {
   esac
 
   echo " "
-  echo "Select one code version."
+  echo "Select a code version."
   read -p "CUDA [c], OpenCL [o], or DPCPP [d]: " TEST_VERSION
   if [ "${TEST_VERSION}" == "c" ]; then
-	echo " "
+	echo "CUDA version will be executed"
   elif [ "${TEST_VERSION}" == "o" ]; then
-	echo " "
+	echo "OpenCL version will be executed"
   elif [ "${TEST_VERSION}" == "d" ]; then
-	echo " "
+	echo "DPC++ version will be executed"
   else
-    echo "Wrong input. Enter [c], [o], or [d]."
+    echo "Wrong code version. Type either [c], or [o], or [d]."
     echo "Terminated."
     exit 9999
   fi
