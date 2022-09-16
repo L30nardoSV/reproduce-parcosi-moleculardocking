@@ -6,8 +6,9 @@ source ${AUXILIARY_SCRIPTS_DIR}/common_functions.sh
 source ${AUXILIARY_SCRIPTS_DIR}/experiments_dataset.sh
 source ${AUXILIARY_SCRIPTS_DIR}/numwi.sh
 
-ADGPU_OPENCL_BINS=(./autodock_gpu_32wi_ocl ./autodock_gpu_64wi_ocl ./autodock_gpu_128wi_ocl ./autodock_gpu_256wi_ocl)
 ADGPU_CUDA_BINS=(./autodock_gpu_32wi_cuda ./autodock_gpu_64wi_cuda ./autodock_gpu_128wi_cuda ./autodock_gpu_256wi_cuda)
+ADGPU_OPENCL_BINS=(./autodock_gpu_32wi_ocl ./autodock_gpu_64wi_ocl ./autodock_gpu_128wi_ocl ./autodock_gpu_256wi_ocl)
+ADGPU_DPCPP_BINS=(./autodock_xegpu_32wi ./autodock_xegpu_64wi ./autodock_xegpu_128wi ./autodock_xegpu_256wi)
 
 # Main execution
 select_device
