@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source common_params.sh
+AUXILIARY_SCRIPTS_DIR=auxiliary_scripts
+
+source ${AUXILIARY_SCRIPTS_DIR}/common_params.sh
 
 function auto_plus_heur() {
     for ipdb in ${EXPERIMENTS_DATASET[@]}; do
