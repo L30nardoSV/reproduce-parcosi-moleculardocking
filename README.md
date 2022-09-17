@@ -85,11 +85,11 @@ cd experiments-adgpu-dpcpp
 Clone [git submodule repository containing input data-set](https://gitlab.com/L30nardoSV/ad-gpu_miniset_20.git) automatically: 
 
 ```
-./prepare_inputs.sh
+./1_prepare_inputs.sh
 ```
 
 Evaluate the performance for different {DPCPP work-group} / {CUDA block} / {OpenCL work-group} sizes:
 
 ```
-./evaluate_numwi.sh
+./2_evaluate_numwi.sh
 ```
