@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#set -o xtrace
-
 # LSMET set
 LSMET_SET=(sw ad)
 
