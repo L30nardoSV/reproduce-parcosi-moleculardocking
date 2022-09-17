@@ -17,6 +17,8 @@ function numwi() {
             -xraylfile ${INPUTS_DIR}/${ipdb}/flex-xray.pdbqt \
             -ffile ${INPUTS_DIR}/${ipdb}/protein.maps.fld \
             -xmloutput 0 \
+            -autostop ${EARLY_TERM_ARG} \
+            -heuristics ${EARLY_TERM_ARG} \
             -resnam ${RES_GPU_DIR}/$1_${ipdb}_${ilsmet}_"`date +"%Y-%m-%d-%H:%M"`" \
             -devnum ${DEVNUM}
         done

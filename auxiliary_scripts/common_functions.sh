@@ -51,6 +51,16 @@ function select_device() {
   else
     printf '%s\n' " -> \"${RES_GPU_DIR}\" folder already exists. Be cautious!"
   fi
+
+  printf '\n%s\n' "AutoDock-GPU early termination (autostop and heuristics)?"
+  read -p "[Y]: " EARLY_TERM
+  if [ "${EARLY_TERM}" == "Y" ]; then
+    EARLY_TERM_ARG=1
+    printf '%s\n' " -> Early termination: ENABLED"
+  else
+    EARLY_TERM_ARG=0
+    printf '%s\n' " -> Early termination: DISABLED"
+  fi
 }
 
 function verify_binaries_exist_in_local_folder() {
