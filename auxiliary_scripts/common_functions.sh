@@ -22,6 +22,18 @@ function select_device() {
 		printf '%s\n' " -> OK. It is a number";;
   esac
 
+  printf '\n%s\n' "AutoDock-GPU early termination (autostop and heuristics)?"
+  read -p "[Y]: " EARLY_TERM
+  if [ "${EARLY_TERM}" == "Y" ]; then
+    EARLY_TERM_ARG=1
+	EARLY_TERM_LABEL=earlyterm
+    printf '%s\n' " -> Early termination: ENABLED"
+  else
+    EARLY_TERM_ARG=0
+    EARLY_TERM_LABEL=no-earlyterm
+    printf '%s\n' " -> Early termination: DISABLED"
+  fi
+
   printf '\n%s\n' "Select a code version."
   read -p "CUDA [c], OpenCL [o], or DPCPP [d]: " TEST_VERSION
   if [ "${TEST_VERSION}" == "c" ]; then
@@ -37,11 +49,11 @@ function select_device() {
   printf '\n%s\n' "Type a meaningful label for your GPU device."
   read -p "E.g.: [v100] [a100] [mi50] [mi100] [vega64] [etc]: " LABEL_GPU
   if [ "${TEST_VERSION}" == "c" ]; then
-    RES_GPU_DIR=results_numwi_cuda_${LABEL_GPU}
+    RES_GPU_DIR=r_cuda_${LABEL_GPU}_${EARLY_TERM_LABEL}
   elif [ "${TEST_VERSION}" == "o" ]; then
-    RES_GPU_DIR=results_numwi_opencl_${LABEL_GPU}
+    RES_GPU_DIR=r_opencl_${LABEL_GPU}_${EARLY_TERM_LABEL}
   elif [ "${TEST_VERSION}" == "d" ]; then
-    RES_GPU_DIR=results_numwi_dpcpp_${LABEL_GPU}
+    RES_GPU_DIR=r_dpcpp_${LABEL_GPU}_${EARLY_TERM_LABEL}
   fi
 
   if [ ! -d ${RES_GPU_DIR} ]; then
@@ -52,15 +64,7 @@ function select_device() {
     printf '%s\n' " -> \"${RES_GPU_DIR}\" folder already exists. Be cautious!"
   fi
 
-  printf '\n%s\n' "AutoDock-GPU early termination (autostop and heuristics)?"
-  read -p "[Y]: " EARLY_TERM
-  if [ "${EARLY_TERM}" == "Y" ]; then
-    EARLY_TERM_ARG=1
-    printf '%s\n' " -> Early termination: ENABLED"
-  else
-    EARLY_TERM_ARG=0
-    printf '%s\n' " -> Early termination: DISABLED"
-  fi
+
 }
 
 function verify_binaries_exist_in_local_folder() {
