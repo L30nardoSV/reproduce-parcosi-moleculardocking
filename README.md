@@ -88,14 +88,8 @@ Clone [git submodule repository containing input data-set](https://gitlab.com/L3
 ./prepare_inputs.sh
 ```
 
-Evaluate the performance for different {DPCPP work-group} / {CUDA block} / {OpenCL work-group} sizes:  
+Evaluate the performance for different {DPCPP work-group} / {CUDA block} / {OpenCL work-group} sizes:
 
 ```
 ./evaluate_numwi.sh
-```
-
-Evaluate the impact of combining of both _autostop_ and _heuristic_ options: 
-
-```
-./evaluate_auto_plus_heur.sh
 ```
