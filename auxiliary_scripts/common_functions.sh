@@ -16,7 +16,7 @@ function select_device() {
 	fi
 
 	DEVNUM=${DEVNUM: 1}
-	printf '\n%s\n' "DEVNUM? (starts at 1, choose preferably 1)"
+	printf '\n%s\n' "AutoDock-GPU DEVNUM? (starts at 1, choose preferably 1)"
 	read -p "[1] or [2] or [3] or [...]: " DEVNUM
 	case $DEVNUM in
 		(*[^0-9]*)
@@ -24,7 +24,7 @@ function select_device() {
 		("")
 			printf '%s\n' " -> Empty -> Terminated" && exit 9999;;
 		(*)
-			printf '%s\n' " -> OK. It is a number";;
+			printf '%s\n' " -> OK. It is a number" && printf " -> Using device #%d\n" ${DEVNUM};;
 	esac
 
 	printf '\n%s\n' "AutoDock-GPU early termination (autostop and heuristics)?"
@@ -42,24 +42,21 @@ function select_device() {
 	printf '\n%s\n' "Select a code version."
 	read -p "CUDA [c], OpenCL [o], or DPCPP [d]: " TEST_VERSION
 	if [ "${TEST_VERSION}" == "c" ]; then
+		VERSION_LABEL=cuda
 		printf '%s\n' " -> CUDA version will be executed"
 	elif [ "${TEST_VERSION}" == "o" ]; then
+		VERSION_LABEL=opencl
 		printf '%s\n' " -> OpenCL version will be executed"
 	elif [ "${TEST_VERSION}" == "d" ]; then
+		VERSION_LABEL=dpcpp
 		printf '%s\n' " -> DPC++ version will be executed"
 	else
 		printf '%s\n' " -> Wrong code version -> Terminated" && exit 9999
 	fi
 
 	printf '\n%s\n' "Type a meaningful label for your CPU/GPU device."
-	read -p "E.g.: [xeon] [a100] [pvc] [gen9] [etc]: " LABEL_GPU
-	if [ "${TEST_VERSION}" == "c" ]; then
-		RES_GPU_DIR=r_${DEVTYPE_LABEL}_${LABEL_GPU}_${EARLY_TERM_LABEL}_cuda
-	elif [ "${TEST_VERSION}" == "o" ]; then
-		RES_GPU_DIR=r_${DEVTYPE_LABEL}_${LABEL_GPU}_${EARLY_TERM_LABEL}_opencl
-	elif [ "${TEST_VERSION}" == "d" ]; then
-		RES_GPU_DIR=r_${DEVTYPE_LABEL}_${LABEL_GPU}_${EARLY_TERM_LABEL}_dpcpp
-	fi
+	read -p "E.g.: [xeon] [a100] [pvc] [gen9] [etc]: " DEV_LABEL
+	RES_GPU_DIR=r_${DEVTYPE_LABEL}_${DEV_LABEL}_${EARLY_TERM_LABEL}_${VERSION_LABEL}
 
 	if [ ! -d ${RES_GPU_DIR} ]; then
 		mkdir ${RES_GPU_DIR}
