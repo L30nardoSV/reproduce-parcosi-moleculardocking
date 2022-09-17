@@ -15,19 +15,17 @@ select_device
 verify_binaries_exist_in_local_folder
 
 (	# numwi test
-	if [ "${TEST_GPU}" == "Y" ]; then
-		if [ "${TEST_VERSION}" == "c" ]; then
-			for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
-				numwi ${i_adgpu_bin}
-			done
-		elif [ "${TEST_VERSION}" == "o" ]; then
-			for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
-				numwi ${i_adgpu_bin}
-			done
-		elif [ "${TEST_VERSION}" == "d" ]; then
-			for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
-				numwi ${i_adgpu_bin}
-			done
-		fi
+	if [ "${TEST_VERSION}" == "c" ]; then
+		for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
+			numwi ${i_adgpu_bin}
+		done
+	elif [ "${TEST_VERSION}" == "o" ]; then
+		for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
+			numwi ${i_adgpu_bin}
+		done
+	elif [ "${TEST_VERSION}" == "d" ]; then
+		for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
+			numwi ${i_adgpu_bin}
+		done
 	fi
 ) 2>&1 | tee ${RES_GPU_DIR}.log

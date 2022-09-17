@@ -3,10 +3,16 @@
 function select_device() {
 	printf '\n%s\n' "[FUNCTION] Selecting device to test with AutoDock-GPU."
 
-	printf '\n%s\n' "GPU?"
-	read -p "[Y]: " TEST_GPU
-	if [ "${TEST_GPU}" != "Y" ]; then
-		printf '%s\n' " -> No device chosen -> Terminated" && exit 9999
+	printf '\n%s\n' "Specify device."
+	read -p "CPU [c] or GPU [g]: " DEVTYPE
+	if [ "${DEVTYPE}" == "c" ]; then
+		printf '%s\n' " -> CPU"
+		DEVTYPE_LABEL=cpu
+	elif [ "${DEVTYPE}" == "g" ]; then
+		printf '%s\n' " -> GPU"
+		DEVTYPE_LABEL=gpu
+	else
+		printf '%s\n' " -> Wrong device -> Terminated" && exit 9999
 	fi
 
 	DEVNUM=${DEVNUM: 1}
@@ -45,14 +51,14 @@ function select_device() {
 		printf '%s\n' " -> Wrong code version -> Terminated" && exit 9999
 	fi
 
-	printf '\n%s\n' "Type a meaningful label for your GPU device."
-	read -p "E.g.: [v100] [a100] [mi50] [mi100] [vega64] [etc]: " LABEL_GPU
+	printf '\n%s\n' "Type a meaningful label for your CPU/GPU device."
+	read -p "E.g.: [xeon] [a100] [pvc] [gen9] [etc]: " LABEL_GPU
 	if [ "${TEST_VERSION}" == "c" ]; then
-		RES_GPU_DIR=r_cuda_${LABEL_GPU}_${EARLY_TERM_LABEL}
+		RES_GPU_DIR=r_${DEVTYPE_LABEL}_${LABEL_GPU}_${EARLY_TERM_LABEL}_cuda
 	elif [ "${TEST_VERSION}" == "o" ]; then
-		RES_GPU_DIR=r_opencl_${LABEL_GPU}_${EARLY_TERM_LABEL}
+		RES_GPU_DIR=r_${DEVTYPE_LABEL}_${LABEL_GPU}_${EARLY_TERM_LABEL}_opencl
 	elif [ "${TEST_VERSION}" == "d" ]; then
-		RES_GPU_DIR=r_dpcpp_${LABEL_GPU}_${EARLY_TERM_LABEL}
+		RES_GPU_DIR=r_${DEVTYPE_LABEL}_${LABEL_GPU}_${EARLY_TERM_LABEL}_dpcpp
 	fi
 
 	if [ ! -d ${RES_GPU_DIR} ]; then
@@ -67,34 +73,32 @@ function select_device() {
 function verify_binaries_exist_in_local_folder() {
 	printf '\n%s\n' "[FUNCTION] Verifying that AutoDock-GPU binaries are present in current folder."
 
-	if [ "${TEST_GPU}" == "Y" ]; then
-		if [ "${TEST_VERSION}" == "c" ]; then
-			for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
-				if [ -f "${i_adgpu_bin}" ]; then
-					printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
-				else
-					printf '%s\n' " -> Make sure CUDA binary is copied over first"
-					printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
-				fi
-			done
-		elif [ "${TEST_VERSION}" == "o" ]; then
-			for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
-				if [ -f "${i_adgpu_bin}" ]; then
-					printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
-				else
-					printf '%s\n' " -> Make sure OpenCL binary is copied over first"
-					printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
-				fi
-			done
-		elif [ "${TEST_VERSION}" == "d" ]; then
-			for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
-				if [ -f "${i_adgpu_bin}" ]; then
-					printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
-				else
-					printf '%s\n' " -> Make sure DPC++ binary is copied over first"
-					printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
-				fi
-			done
-		fi
+	if [ "${TEST_VERSION}" == "c" ]; then
+		for i_adgpu_bin in ${ADGPU_CUDA_BINS[@]}; do
+			if [ -f "${i_adgpu_bin}" ]; then
+				printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
+			else
+				printf '%s\n' " -> Make sure CUDA binary is copied over first"
+				printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
+			fi
+		done
+	elif [ "${TEST_VERSION}" == "o" ]; then
+		for i_adgpu_bin in ${ADGPU_OPENCL_BINS[@]}; do
+			if [ -f "${i_adgpu_bin}" ]; then
+				printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
+			else
+				printf '%s\n' " -> Make sure OpenCL binary is copied over first"
+				printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
+			fi
+		done
+	elif [ "${TEST_VERSION}" == "d" ]; then
+		for i_adgpu_bin in ${ADGPU_DPCPP_BINS[@]}; do
+			if [ -f "${i_adgpu_bin}" ]; then
+				printf '%s\n' " -> \"${i_adgpu_bin}\" exists."
+			else
+				printf '%s\n' " -> Make sure DPC++ binary is copied over first"
+				printf '%s\n' " -> \"${i_adgpu_bin}\" does not exist -> Terminated." && exit 9999
+			fi
+		done
 	fi
 }
