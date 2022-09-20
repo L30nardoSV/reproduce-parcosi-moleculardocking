@@ -76,7 +76,7 @@ make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi
 
 _**Extra hints**_
 
-Compilation of CUDA code for modern NVIDIA GPU architectures might require to also specify their compute capability.
+Compilation of CUDA code for modern NVIDIA GPU architectures might require to also specify their compute capability. See [reference](https://github.com/ccsb-scripps/AutoDock-GPU/issues/172#issuecomment-1010263229).
 
 For instance, when compiling for the A100 GPU, use instead:
 
@@ -84,7 +84,7 @@ For instance, when compiling for the A100 GPU, use instead:
 make DEVICE=GPU NUMWI=32 TARGETS="80"
 ```
 
-See [reference](https://github.com/ccsb-scripps/AutoDock-GPU/issues/172#issuecomment-1010263229).
+
 
 ### 3. Evaluation
 
