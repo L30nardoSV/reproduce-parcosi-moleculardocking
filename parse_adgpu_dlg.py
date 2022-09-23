@@ -182,17 +182,17 @@ def main():
 	#print(csv_ordered_ad_runtimes_metafile)
 
 	# Produce csv files with all details
-#    with open('myresults_sw.csv', 'w', newline='') as file:
-#        writer = csv.writer(file)
-#        writer.writerow(["LS method", "Version", "NUMWI", "PDB", "Run time(s)"])
-#        for row in csv_ordered_sw_metafile:
-#            writer.writerow(row)
-    
-#    with open('myresults_ad.csv', 'w', newline='') as file:
-#        writer = csv.writer(file)
-#        writer.writerow(["LS method", "Version", "NUMWI", "PDB", "Run time(s)"])
-#        for row in csv_ordered_ad_metafile:
-#            writer.writerow(row)
+	#with open('myresults_sw.csv', 'w', newline='') as file:
+	#	writer = csv.writer(file)
+	#	writer.writerow(["LS method", "Version", "NUMWI", "PDB", "Run time(s)"])
+	#	for row in csv_ordered_sw_metafile:
+	#		writer.writerow(row)
+
+	#with open('myresults_ad.csv', 'w', newline='') as file:
+	#	writer = csv.writer(file)
+	#	writer.writerow(["LS method", "Version", "NUMWI", "PDB", "Run time(s)"])
+	#	for row in csv_ordered_ad_metafile:
+	#		writer.writerow(row)
 
 	# Produce csv files only with runtimes only
 	filename_sw = 'myresults_sw' + '_' + test + '_' + folder_version + '_' + device
