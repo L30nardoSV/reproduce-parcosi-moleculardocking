@@ -21,9 +21,9 @@ def parse_dirname(dirname):
 def parse_filename(filename):
 	"""Parse file names"""
 	# IMPORTANT: adapt these indexes on a case basis
-	index_in_filename_ls = 4
+	index_in_filename_ls = 5	#4
 	index_in_filename_nwi = 2
-	index_in_filename_pdb = 3
+	index_in_filename_pdb = 4	#3
 
 	# Actual parsing
 	head, tail = os.path.split(filename)
