@@ -3,6 +3,24 @@ import os
 import csv
 import pandas as pd
 
+def parse_dirname(dirname):
+	name_list = dirname.split('_')
+	test = name_list[1]
+	version = name_list[2]
+	device = name_list[3]
+	return test, version, device
+
+def parse_filename(filename):
+	head, tail = os.path.split(filename)
+	name_list = tail.replace('.', '_')
+	name_list = name_list.split('_')
+	#print("Filename: head = %s \ttail = %s" %(head, tail))
+	#print(name_list)
+	ls = name_list[4]
+	nwi = name_list[2]
+	pdb = name_list[3]
+	return ls, nwi, pdb
+
 def retrieve_runtime(filename):
 	"""Retrieve runtime (s) from dlg"""
 
@@ -20,25 +38,6 @@ def retrieve_runtime(filename):
 				#print(runtime)
 
 	return runtime
-
-def parse_dirname(dirname):
-	name_list = dirname.split('_')
-	test = name_list[1]
-	version = name_list[2]
-	device = name_list[3]
-	return test, version, device
-
-def parse_filename(filename):
-	head, tail = os.path.split(filename)
-	name_list = tail.replace('.', '_')
-	name_list = name_list.split('_')
-	#print("Filename head: %s" %(head))
-	#print("Filename tail: %s" %(tail))
-	#print(name_list)
-	ls = name_list[4]
-	nwi = name_list[2]
-	pdb = name_list[3]
-	return ls, nwi, pdb
 
 def reorder_metafile(metafile):
 	# --------------------------------------------------------------------
