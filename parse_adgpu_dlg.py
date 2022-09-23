@@ -4,6 +4,7 @@ import csv
 import pandas as pd
 
 def parse_dirname(dirname):
+	"""Parse folder name"""
 	name_list = dirname.split('_')
 	test = name_list[1]
 	version = name_list[2]
@@ -11,18 +12,22 @@ def parse_dirname(dirname):
 	return test, version, device
 
 def parse_filename(filename):
+	"""Parse file names"""
 	head, tail = os.path.split(filename)
 	name_list = tail.replace('.', '_')
 	name_list = name_list.split('_')
 	#print("Filename: head = %s \ttail = %s" %(head, tail))
 	#print(name_list)
-	ls = name_list[4]
-	nwi = name_list[2]
-	pdb = name_list[3]
+	index_in_filename_ls = 4
+	index_in_filename_nwi = 2
+	index_in_filename_pdb = 3
+	ls = name_list[index_in_filename_ls]
+	nwi = name_list[index_in_filename_nwi]
+	pdb = name_list[index_in_filename_pdb]
 	return ls, nwi, pdb
 
 def retrieve_runtime(filename):
-	"""Retrieve runtime (s) from dlg"""
+	"""Retrieve runtime (s) from dlg files"""
 
 	with open(filename, "rt") as myfile:   # open file for reading text
 		lines = myfile.readlines()
