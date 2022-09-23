@@ -6,9 +6,12 @@ import pandas as pd
 def parse_dirname(dirname):
 	"""Parse folder name"""
 	name_list = dirname.split('_')
-	test = name_list[1]
-	version = name_list[2]
-	device = name_list[3]
+	index_in_foldername_test = 1
+	index_in_foldername_version = 4
+	index_in_foldername_device = 2
+	test = name_list[index_in_foldername_test]
+	version = name_list[index_in_foldername_version]
+	device = name_list[index_in_foldername_device]
 	return test, version, device
 
 def parse_filename(filename):
@@ -133,7 +136,7 @@ def main():
 	dirname = sys.argv[1]
 
 	test, folder_version, device = parse_dirname(dirname)
-	#print(test, version, device)
+	#print(test, folder_version, device)
 
 	list_files = os.listdir(dirname)
 	#print(list_files)
