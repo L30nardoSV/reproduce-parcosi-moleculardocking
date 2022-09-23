@@ -35,48 +35,55 @@ def parse_filename(filename):
 	#print("Filename head: %s" %(head))
 	#print("Filename tail: %s" %(tail))
 	#print(name_list)
+	ls = name_list[4]
 	nwi = name_list[2]
 	pdb = name_list[3]
-	ls = name_list[4]
-	return nwi, pdb, ls
+	return ls, nwi, pdb
 
 def reorder_metafile(metafile):
 	# --------------------------------------------------------------------
 	# Sublists
 	list_1u4d, list_1oyt, list_1mzc, list_3s8o, list_2d1o  = [['0', '0', '0', '0'] for i in range(5)]
 
+	index_pdb = 2
+	index_numwi = 1
+	index_runtime = 3
+
 	for idx in metafile:
-		if idx[2] == '1u4d':
-			if   idx[1] == '32wi' : list_1u4d[0] = idx
-			elif idx[1] == '64wi' : list_1u4d[1] = idx
-			elif idx[1] == '128wi': list_1u4d[2] = idx
-			elif idx[1] == '256wi': list_1u4d[3] = idx
+		pdb = idx[index_pdb]
+		numwi = idx[index_numwi]
+		runtime = idx[index_runtime]
+		if pdb == '1u4d':
+			if   numwi == '32wi' : list_1u4d[0] = idx
+			elif numwi == '64wi' : list_1u4d[1] = idx
+			elif numwi == '128wi': list_1u4d[2] = idx
+			elif numwi == '256wi': list_1u4d[3] = idx
 			else: print('error')
-		elif idx[2] == '1oyt':
-			if   idx[1] == '32wi' : list_1oyt[0] = idx
-			elif idx[1] == '64wi' : list_1oyt[1] = idx
-			elif idx[1] == '128wi': list_1oyt[2] = idx
-			elif idx[1] == '256wi': list_1oyt[3] = idx
+		elif pdb == '1oyt':
+			if   numwi == '32wi' : list_1oyt[0] = idx
+			elif numwi == '64wi' : list_1oyt[1] = idx
+			elif numwi == '128wi': list_1oyt[2] = idx
+			elif numwi == '256wi': list_1oyt[3] = idx
 			else: print('error')
-		elif idx[2] == '1mzc':
-			if   idx[1] == '32wi' : list_1mzc[0] = idx
-			elif idx[1] == '64wi' : list_1mzc[1] = idx
-			elif idx[1] == '128wi': list_1mzc[2] = idx
-			elif idx[1] == '256wi': list_1mzc[3] = idx
-		elif idx[2] == '3s8o':
-			if   idx[1] == '32wi' : list_3s8o[0] = idx
-			elif idx[1] == '64wi' : list_3s8o[1] = idx
-			elif idx[1] == '128wi': list_3s8o[2] = idx
-			elif idx[1] == '256wi': list_3s8o[3] = idx
+		elif pdb == '1mzc':
+			if   numwi == '32wi' : list_1mzc[0] = idx
+			elif numwi == '64wi' : list_1mzc[1] = idx
+			elif numwi == '128wi': list_1mzc[2] = idx
+			elif numwi == '256wi': list_1mzc[3] = idx
+		elif pdb == '3s8o':
+			if   numwi == '32wi' : list_3s8o[0] = idx
+			elif numwi == '64wi' : list_3s8o[1] = idx
+			elif numwi == '128wi': list_3s8o[2] = idx
+			elif numwi == '256wi': list_3s8o[3] = idx
 			else: print('error')
-		elif idx[2] == '2d1o':
-			if   idx[1] == '32wi' : list_2d1o[0] = idx
-			elif idx[1] == '64wi' : list_2d1o[1] = idx
-			elif idx[1] == '128wi': list_2d1o[2] = idx
-			elif idx[1] == '256wi': list_2d1o[3] = idx
+		elif pdb == '2d1o':
+			if   numwi == '32wi' : list_2d1o[0] = idx
+			elif numwi == '64wi' : list_2d1o[1] = idx
+			elif numwi == '128wi': list_2d1o[2] = idx
+			elif numwi == '256wi': list_2d1o[3] = idx
 			else: print('error')
 		else:
-			print('error!, \t%s, \t%s' %(idx[3], idx[2]))
+			print('error!, \t%s, \t%f' %(pdb, runtime))
 
 	#print(list_1u4d)
 	#print(list_1oyt)
@@ -102,11 +109,11 @@ def reorder_metafile(metafile):
 	# as some folders contain results only for one case (numwi=32)
 	# instead of four ones (numwi={32, 64, 128, 256})
 	for i in range(4):
-		R_1u4d[i+1] = list_1u4d[i][3]
-		R_1oyt[i+1] = list_1oyt[i][3]
-		R_1mzc[i+1] = list_1mzc[i][3]
-		R_3s8o[i+1] = list_3s8o[i][3]
-		R_2d1o[i+1] = list_2d1o[i][3]
+		R_1u4d[i+1] = list_1u4d[i][index_runtime]
+		R_1oyt[i+1] = list_1oyt[i][index_runtime]
+		R_1mzc[i+1] = list_1mzc[i][index_runtime]
+		R_3s8o[i+1] = list_3s8o[i][index_runtime]
+		R_2d1o[i+1] = list_2d1o[i][index_runtime]
 
 	#print(R_1u4d)
 	#print(R_1ywr)
@@ -131,7 +138,7 @@ def main():
 	csv_ad_metafile = []
 
 	for filename in list_files:
-		nwi, pdb, ls = parse_filename(dirname + '/' + filename)
+		ls, nwi, pdb = parse_filename(dirname + '/' + filename)
 		runtime = retrieve_runtime(dirname + '/' + filename)
 		#print('%s, \t%s, \t%s, \t%6.2f' %(ls, nwi, pdb, runtime))
 		csv_row = []
