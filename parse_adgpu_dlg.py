@@ -62,9 +62,11 @@ def reorder_metafile(metafile):
 	index_numwi = 1
 	index_runtime = 3
 
+	num_pdbs = 5
+
 	# --------------------------------------------------------------------
 	# Sublists
-	list_1u4d, list_1oyt, list_1mzc, list_3s8o, list_2d1o  = [['0', '0', '0', '0'] for i in range(5)]
+	list_1u4d, list_1oyt, list_1mzc, list_3s8o, list_2d1o  = [['0', '0', '0', '0'] for i in range(num_pdbs)]
 
 	for idx in metafile:
 		pdb = idx[index_pdb]
@@ -104,7 +106,7 @@ def reorder_metafile(metafile):
 
 	# --------------------------------------------------------------------
 	# Sublists: pdb vs runtimes
-	R_1u4d, R_1oyt, R_1mzc, R_3s8o, R_2d1o = [['0', '0', '0', '0', '0'] for i in range(5)]
+	R_1u4d, R_1oyt, R_1mzc, R_3s8o, R_2d1o = [['0', '0', '0', '0', '0'] for i in range(num_pdbs)]
  
 	R_1u4d[0] = '1u4d'
 	R_1oyt[0] = '1oyt'
