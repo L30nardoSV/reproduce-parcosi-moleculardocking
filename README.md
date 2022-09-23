@@ -106,7 +106,7 @@ Clone [git submodule repository containing input data-set](https://gitlab.com/L3
 ./1_prepare_inputs.sh
 ```
 
-Evaluate the performance for different {DPCPP work-group} / {CUDA block} / {OpenCL work-group} sizes:
+Evaluate the performance for different {DPCPP work-group} / {OpenCL work-group} / {CUDA block} sizes:
 
 ```
 ./2_evaluate_numwi.sh
