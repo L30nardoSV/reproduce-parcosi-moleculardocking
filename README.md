@@ -43,9 +43,9 @@ make DEVICE=XeGPU NUMWI=128 && cp bin/autodock_xegpu_128wi ../experiments-adgpu-
 make DEVICE=XeGPU NUMWI=256 && cp bin/autodock_xegpu_256wi ../experiments-adgpu-dpcpp/
 ```
 
-#### 2.2. Compile CUDA and OpenCL versions
+#### 2.2. Compile OpenCL and CUDA versions
 
-Switch to git branch holding original CUDA and OpenCL versions (DPCPP code was translated from this equivalent CUDA code):
+Switch to git branch holding original OpenCL and CUDA versions (DPCPP code was translated from this equivalent CUDA code):
 
 ```
 git checkout v1.5.3
@@ -58,14 +58,9 @@ export GPU_INCLUDE_PATH=/usr/local/cuda/include
 export GPU_LIBRARY_PATH=/usr/local/cuda/lib64
 ```
 
-Compile CUDA and OpenCL codes, rename the produced binaries conveniently (for the experiment scripts to work), and move generated binaries into the experiments folder:
+Compile codes, rename the produced binaries conveniently (for the experiment scripts to work), and move generated binaries into the experiments folder:
 
-```
-make DEVICE=GPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda && cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
-make DEVICE=GPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_cuda && cp bin/autodock_gpu_64wi_cuda ../experiments-adgpu-dpcpp/
-make DEVICE=GPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_cuda && cp bin/autodock_gpu_128wi_cuda ../experiments-adgpu-dpcpp/
-make DEVICE=GPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda && cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
-```
+**OpenCL**
 
 ```
 make DEVICE=OCLGPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_ocl && cp bin/autodock_gpu_32wi_ocl ../experiments-adgpu-dpcpp/
@@ -74,11 +69,11 @@ make DEVICE=OCLGPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi
 make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_ocl && cp bin/autodock_gpu_256wi_ocl ../experiments-adgpu-dpcpp/
 ```
 
-_**Extra hints**_
+**CUDA**
 
-Compilation of CUDA code for modern NVIDIA GPU architectures might require to also specify their compute capability. See [reference](https://github.com/ccsb-scripps/AutoDock-GPU/issues/172#issuecomment-1010263229).
+CUDA code for modern NVIDIA GPU architectures might require to also specify their compute capability via the `TARGETS="XX"` compile option. See [reference](https://github.com/ccsb-scripps/AutoDock-GPU/issues/172#issuecomment-1010263229).
 
-For instance, when compiling for the A100 GPU, use instead:
+For the A100 GPU or newer devices (`TARGETS="80"`):
 
 ```
 make DEVICE=GPU NUMWI=32 TARGETS="80" && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda && cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
@@ -87,6 +82,14 @@ make DEVICE=GPU NUMWI=128 TARGETS="80" && mv bin/autodock_gpu_128wi bin/autodock
 make DEVICE=GPU NUMWI=256 TARGETS="80" && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda && cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
 ```
 
+For older GPUs:
+
+```
+make DEVICE=GPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda && cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_cuda && cp bin/autodock_gpu_64wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_cuda && cp bin/autodock_gpu_128wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda && cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
+```
 
 
 ### 3. Evaluation
