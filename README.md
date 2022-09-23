@@ -81,7 +81,10 @@ Compilation of CUDA code for modern NVIDIA GPU architectures might require to al
 For instance, when compiling for the A100 GPU, use instead:
 
 ```
-make DEVICE=GPU NUMWI=32 TARGETS="80"
+make DEVICE=GPU NUMWI=32 TARGETS="80" && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda && cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=64 TARGETS="80" && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_cuda && cp bin/autodock_gpu_64wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=128 TARGETS="80" && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_cuda && cp bin/autodock_gpu_128wi_cuda ../experiments-adgpu-dpcpp/
+make DEVICE=GPU NUMWI=256 TARGETS="80" && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda && cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
 ```
 
 
