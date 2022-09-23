@@ -82,7 +82,7 @@ make DEVICE=GPU NUMWI=128 TARGETS="80" && mv bin/autodock_gpu_128wi bin/autodock
 make DEVICE=GPU NUMWI=256 TARGETS="80" && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_cuda && cp bin/autodock_gpu_256wi_cuda ../experiments-adgpu-dpcpp/
 ```
 
-For older GPUs:
+For older GPUs (no need for extra options):
 
 ```
 make DEVICE=GPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_cuda && cp bin/autodock_gpu_32wi_cuda ../experiments-adgpu-dpcpp/
