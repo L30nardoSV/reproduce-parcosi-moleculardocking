@@ -102,14 +102,11 @@ def reorder_metafile(metafile):
 		else:
 			print('error!, \t%s, \t%f' %(pdb, runtime))
 
-	#print(list_1u4d)
-	#print(list_1oyt)
-	#print(list_1mzc)
-	#print(list_3s8o)
-	#print(list_2d1o) 
-
 	reordered_metafile = []
 	reordered_metafile = list_1u4d + list_1oyt + list_1mzc + list_3s8o + list_2d1o
+
+	#for idx_list in reordered_metafile:
+	#	print(idx_list)
 
 	# --------------------------------------------------------------------
 	# Sublists: pdb vs runtimes
@@ -132,14 +129,12 @@ def reorder_metafile(metafile):
 		R_3s8o[i+1] = list_3s8o[i][index_runtime]
 		R_2d1o[i+1] = list_2d1o[i][index_runtime]
 
-	#print(R_1u4d)
-	#print(R_1oyt)
-	#print(R_1mzc)
-	#print(R_3s8o)
-	#print(R_2d1o)
-
 	reordered_runtimes_metafile = []
 	reordered_runtimes_metafile = [R_1u4d] + [R_1oyt] + [R_1mzc] + [R_3s8o] + [R_2d1o]
+
+	#for idx_list in reordered_runtimes_metafile:
+	#	print(idx_list)
+
 	return reordered_metafile, reordered_runtimes_metafile
 
 def main():
