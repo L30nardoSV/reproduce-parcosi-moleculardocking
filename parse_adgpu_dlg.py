@@ -5,10 +5,14 @@ import pandas as pd
 
 def parse_dirname(dirname):
 	"""Parse folder name"""
-	name_list = dirname.split('_')
+
+	# IMPORTANT: adapt these indexes on a case basis
 	index_in_foldername_test = 1
 	index_in_foldername_version = 4
 	index_in_foldername_device = 2
+
+	# Actual parsing
+	name_list = dirname.split('_')
 	test = name_list[index_in_foldername_test]
 	version = name_list[index_in_foldername_version]
 	device = name_list[index_in_foldername_device]
@@ -16,14 +20,17 @@ def parse_dirname(dirname):
 
 def parse_filename(filename):
 	"""Parse file names"""
+	# IMPORTANT: adapt these indexes on a case basis
+	index_in_filename_ls = 4
+	index_in_filename_nwi = 2
+	index_in_filename_pdb = 3
+
+	# Actual parsing
 	head, tail = os.path.split(filename)
 	name_list = tail.replace('.', '_')
 	name_list = name_list.split('_')
 	#print("Filename: head = %s \ttail = %s" %(head, tail))
 	#print(name_list)
-	index_in_filename_ls = 4
-	index_in_filename_nwi = 2
-	index_in_filename_pdb = 3
 	ls = name_list[index_in_filename_ls]
 	nwi = name_list[index_in_filename_nwi]
 	pdb = name_list[index_in_filename_pdb]
@@ -48,13 +55,16 @@ def retrieve_runtime(filename):
 	return runtime
 
 def reorder_metafile(metafile):
-	# --------------------------------------------------------------------
-	# Sublists
-	list_1u4d, list_1oyt, list_1mzc, list_3s8o, list_2d1o  = [['0', '0', '0', '0'] for i in range(5)]
+	"""Reorder metafile according to number of work-items"""
 
+	# IMPORTANT: adapt these indexes on a case basis
 	index_pdb = 2
 	index_numwi = 1
 	index_runtime = 3
+
+	# --------------------------------------------------------------------
+	# Sublists
+	list_1u4d, list_1oyt, list_1mzc, list_3s8o, list_2d1o  = [['0', '0', '0', '0'] for i in range(5)]
 
 	for idx in metafile:
 		pdb = idx[index_pdb]
@@ -123,9 +133,10 @@ def reorder_metafile(metafile):
 		R_2d1o[i+1] = list_2d1o[i][index_runtime]
 
 	#print(R_1u4d)
-	#print(R_1ywr)
-	#print(R_5wlo)
-	#print(R_1jyq)
+	#print(R_1oyt)
+	#print(R_1mzc)
+	#print(R_3s8o)
+	#print(R_2d1o)
 
 	reordered_runtimes_metafile = []
 	reordered_runtimes_metafile = [R_1u4d] + [R_1oyt] + [R_1mzc] + [R_3s8o] + [R_2d1o]
