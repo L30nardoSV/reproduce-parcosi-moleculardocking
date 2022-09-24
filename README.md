@@ -37,10 +37,10 @@ source /opt/intel/oneapi/setvars.sh
 Compile DPCPP code, and move generated binaries into the experiments folder:
 
 ```
-make DEVICE=XeGPU NUMWI=32 && cp bin/autodock_xegpu_32wi ../experiments-adgpu-dpcpp/
-make DEVICE=XeGPU NUMWI=64 && cp bin/autodock_xegpu_64wi ../experiments-adgpu-dpcpp/
-make DEVICE=XeGPU NUMWI=128 && cp bin/autodock_xegpu_128wi ../experiments-adgpu-dpcpp/
-make DEVICE=XeGPU NUMWI=256 && cp bin/autodock_xegpu_256wi ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=32 && mv bin/autodock_xegpu_32wi bin/autodock_xegpu_32wi_dpcpp && cp bin/autodock_xegpu_32wi_dpcpp ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=64 && mv bin/autodock_xegpu_64wi bin/autodock_xegpu_64wi_dpcpp && cp bin/autodock_xegpu_64wi_dpcpp ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=128 && mv bin/autodock_xegpu_128wi bin/autodock_xegpu_128wi_dpcpp && cp bin/autodock_xegpu_128wi_dpcpp ../experiments-adgpu-dpcpp/
+make DEVICE=XeGPU NUMWI=256 && mv bin/autodock_xegpu_256wi bin/autodock_xegpu_256wi_dpcpp && cp bin/autodock_xegpu_256wi_dpcpp ../experiments-adgpu-dpcpp/
 ```
 
 #### 2.2. Compile OpenCL and CUDA versions
