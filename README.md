@@ -116,7 +116,7 @@ Evaluate the performance for different {DPCPP work-group} / {OpenCL work-group} 
 
 Collect metrics and store them into xlsx files.
 
-Execute Python script within a virtual environment. See [reference](See https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python).
+Execute Python script within a virtual environment. See [reference](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python).
 
 ```
 python3 -mvenv env
