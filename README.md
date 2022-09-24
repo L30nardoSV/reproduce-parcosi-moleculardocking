@@ -111,3 +111,27 @@ Evaluate the performance for different {DPCPP work-group} / {OpenCL work-group} 
 ```
 ./2_evaluate_numwi.sh
 ```
+
+### 4. Collection
+
+Collect metrics and store them into xlsx files.
+
+Execute Python script within a virtual environment. See [reference](See https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python).
+
+```
+python3 -mvenv env
+```
+
+```
+source env/bin/activate
+```
+
+```
+python3 parse_adgpu_dlg.py <folder>
+```
+
+```
+deactivate
+```
+
+
