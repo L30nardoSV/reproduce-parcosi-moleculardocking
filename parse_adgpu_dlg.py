@@ -54,6 +54,24 @@ def retrieve_runtime(filename):
 
 	return runtime
 
+def retrieve_lowestE(filename):
+	"""Retrieve lowest energy (s) from dlg files"""
+
+	with open(filename, "rt") as myfile:   # open file for reading text
+		lines = myfile.readlines()
+		found_keyword = False
+
+		for line in lines:
+			if line.startswith('   1 |'):
+				found_keyword = True
+
+			if found_keyword:
+				lowestE = float(line[7:17])
+				found_keyword = False
+				#print(lowestE)
+
+	return lowestE
+
 def reorder_metafile(metafile):
 	"""Reorder metafile according to number of work-items"""
 
@@ -61,6 +79,7 @@ def reorder_metafile(metafile):
 	index_pdb = 2
 	index_numwi = 1
 	index_runtime = 3
+	index_lowestE = 4
 
 	num_pdbs = 5
 
@@ -104,10 +123,14 @@ def reorder_metafile(metafile):
 		else:
 			print('error!, \t%s, \t%f' %(pdb, runtime))
 
+	reordered_metafile = []
+	reordered_metafile = list_1u4d + list_1oyt + list_1mzc + list_3s8o + list_2d1o
+	#for idx_list in reordered_metafile:
+	#	print(idx_list)
+
 	# --------------------------------------------------------------------
 	# Sublists: pdb vs runtimes
 	R_1u4d, R_1oyt, R_1mzc, R_3s8o, R_2d1o = [['0', '0', '0', '0', '0'] for i in range(num_pdbs)]
- 
 	R_1u4d[0] = '1u4d'
 	R_1oyt[0] = '1oyt'
 	R_1mzc[0] = '1mzc'
@@ -125,21 +148,39 @@ def reorder_metafile(metafile):
 		R_3s8o[i+1] = list_3s8o[i][index_runtime]
 		R_2d1o[i+1] = list_2d1o[i][index_runtime]
 
-	# --------------------------------------------------------------------
-
-	reordered_metafile = []
-	reordered_metafile = list_1u4d + list_1oyt + list_1mzc + list_3s8o + list_2d1o
-
 	reordered_runtimes_metafile = []
 	reordered_runtimes_metafile = [R_1u4d] + [R_1oyt] + [R_1mzc] + [R_3s8o] + [R_2d1o]
-
-	#for idx_list in reordered_metafile:
-	#	print(idx_list)
-
 	#for idx_list in reordered_runtimes_metafile:
 	#	print(idx_list)
 
-	return reordered_metafile, reordered_runtimes_metafile
+	# --------------------------------------------------------------------
+	# Sublists: pdb vs lowest energy
+	LE_1u4d, LE_1oyt, LE_1mzc, LE_3s8o, LE_2d1o = [['0', '0', '0', '0', '0'] for i in range(num_pdbs)]
+	LE_1u4d[0] = '1u4d'
+	LE_1oyt[0] = '1oyt'
+	LE_1mzc[0] = '1mzc'
+	LE_3s8o[0] = '3s8o'
+	LE_2d1o[0] = '2d1o'
+
+	# CAUTION
+	# Might need to replaced range(4) for range(1),
+	# as some folders contain results only for one case (numwi=32)
+	# instead of four ones (numwi={32, 64, 128, 256})
+	for i in range(4):
+		LE_1u4d[i+1] = list_1u4d[i][index_lowestE]
+		LE_1oyt[i+1] = list_1oyt[i][index_lowestE]
+		LE_1mzc[i+1] = list_1mzc[i][index_lowestE]
+		LE_3s8o[i+1] = list_3s8o[i][index_lowestE]
+		LE_2d1o[i+1] = list_2d1o[i][index_lowestE]
+
+	reordered_lowestE_metafile = []
+	reordered_lowestE_metafile = [LE_1u4d] + [LE_1oyt] + [LE_1mzc] + [LE_3s8o] + [LE_2d1o]
+	#for idx_list in reordered_lowestE_metafile:
+	#	print(idx_list)
+
+	# --------------------------------------------------------------------
+
+	return reordered_metafile, reordered_runtimes_metafile, reordered_lowestE_metafile
 
 def main():
 	# First argument is the folder containing .dlg files	
@@ -157,9 +198,10 @@ def main():
 	for filename in list_files:
 		ls, nwi, pdb = parse_filename(dirname + '/' + filename)
 		runtime = retrieve_runtime(dirname + '/' + filename)
-		#print('%s, \t%s, \t%s, \t%6.2f' %(ls, nwi, pdb, runtime))
+		lowestE = retrieve_lowestE(dirname + '/' + filename)
+		#print('%s, \t%s, \t%s, \t%6.2f, \t%6.2f' %(ls, nwi, pdb, runtime, lowestE))
 		csv_row = []
-		csv_row.extend([ls, nwi, pdb, runtime])
+		csv_row.extend([ls, nwi, pdb, runtime, lowestE])
 		if ls == "sw":
 			csv_sw_metafile.extend([csv_row])
 		elif ls == "ad":
@@ -175,59 +217,50 @@ def main():
 	# CAUTION
 	# Might need to comment one of the following two function calls
 	# as there are cases where either SW or AD results are not present
-	csv_ordered_sw_metafile, csv_ordered_sw_runtimes_metafile = reorder_metafile(csv_sw_metafile)
-	csv_ordered_ad_metafile, csv_ordered_ad_runtimes_metafile = reorder_metafile(csv_ad_metafile)
+	csv_ordered_sw_metafile, csv_ordered_sw_runtimes_metafile, csv_ordered_sw_lowestE_metafile = reorder_metafile(csv_sw_metafile)
+	csv_ordered_ad_metafile, csv_ordered_ad_runtimes_metafile, csv_ordered_ad_lowestE_metafile = reorder_metafile(csv_ad_metafile)
 
-	#print(csv_ordered_sw_metafile)
-	#print(csv_ordered_ad_metafile)
-	#print(csv_ordered_sw_runtimes_metafile)
-	#print(csv_ordered_ad_runtimes_metafile)
+	list_metrics = ['runtimes', 'lowestE']
 
-	# Produce csv files with all details
-	#with open('myresults_sw.csv', 'w', newline='') as file:
-	#	writer = csv.writer(file)
-	#	writer.writerow(["LS method", "Version", "NUMWI", "PDB", "Run time(s)"])
-	#	for row in csv_ordered_sw_metafile:
-	#		writer.writerow(row)
+	for i_metric in list_metrics:
+		# Produce csv files only with runtimes only
+		filename_sw = 'myresults_sw' + '_' + test + '_' + folder_version + '_' + device + '_' + i_metric
+		filename_ad = 'myresults_ad' + '_' + test + '_' + folder_version + '_' + device + '_' + i_metric
+		filename_sw_csv = filename_sw + '.csv'
+		filename_ad_csv = filename_ad + '.csv'
+		filename_sw_txt = filename_sw + '.txt'
+		filename_ad_txt = filename_ad + '.txt'
+		filename_sw_xlsx = filename_sw + '.xlsx'
+		filename_ad_xlsx = filename_ad + '.xlsx'
+		print(filename_sw_csv)
+		print(filename_ad_csv)
 
-	#with open('myresults_ad.csv', 'w', newline='') as file:
-	#	writer = csv.writer(file)
-	#	writer.writerow(["LS method", "Version", "NUMWI", "PDB", "Run time(s)"])
-	#	for row in csv_ordered_ad_metafile:
-	#		writer.writerow(row)
+		if i_metric == 'runtimes':
+			csv_sw = csv_ordered_sw_runtimes_metafile
+			csv_ad = csv_ordered_ad_runtimes_metafile
+		elif i_metric == "lowestE":
+			csv_sw = csv_ordered_sw_lowestE_metafile
+			csv_ad = csv_ordered_ad_lowestE_metafile
 
-	# Produce csv files only with runtimes only
-	filename_sw = 'myresults_sw' + '_' + test + '_' + folder_version + '_' + device
-	filename_ad = 'myresults_ad' + '_' + test + '_' + folder_version + '_' + device
+		with open(filename_sw_csv, 'w', newline='') as file:
+			writer = csv.writer(file)
+			writer.writerow(["pdb", "32wi", "64wi", "128wi", "256wi"])
+			for row in csv_sw:
+				writer.writerow(row)
 
-	filename_sw_csv = filename_sw + '.csv'
-	filename_ad_csv = filename_ad + '.csv'
-
-	filename_sw_txt = filename_sw + '.txt'
-	filename_ad_txt = filename_ad + '.txt'
-
-	filename_sw_xlsx = filename_sw + '.xlsx'
-	filename_ad_xlsx = filename_ad + '.xlsx'
-
-	with open(filename_sw_csv, 'w', newline='') as file:
-		writer = csv.writer(file)
-		writer.writerow(["pdb", "32wi", "64wi", "128wi", "256wi"])
-		for row in csv_ordered_sw_runtimes_metafile:
-			writer.writerow(row)
-
-	with open(filename_ad_csv, 'w', newline='') as file:
-		writer = csv.writer(file)
-		writer.writerow(["pdb", "32wi", "64wi", "128wi", "256wi"])
-		for row in csv_ordered_ad_runtimes_metafile:
-			writer.writerow(row)
+		with open(filename_ad_csv, 'w', newline='') as file:
+			writer = csv.writer(file)
+			writer.writerow(["pdb", "32wi", "64wi", "128wi", "256wi"])
+			for row in csv_ad:
+				writer.writerow(row)
     
-	# Changing file extension: from csv into txt
-	os.rename(filename_sw_csv, filename_sw_txt)
-	os.rename(filename_ad_csv, filename_ad_txt)
+		# Changing file extension: from csv into txt
+		os.rename(filename_sw_csv, filename_sw_txt)
+		os.rename(filename_ad_csv, filename_ad_txt)
 
-	# Transforming files: from txt into excel
-	pd.read_csv(filename_sw_txt, delimiter=",").to_excel(filename_sw_xlsx, index=False)
-	pd.read_csv(filename_ad_txt, delimiter=",").to_excel(filename_ad_xlsx, index=False)
+		# Transforming files: from txt into excel
+		pd.read_csv(filename_sw_txt, delimiter=",").to_excel(filename_sw_xlsx, index=False)
+		pd.read_csv(filename_ad_txt, delimiter=",").to_excel(filename_ad_xlsx, index=False)
 
 main()
 
