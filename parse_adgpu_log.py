@@ -174,7 +174,7 @@ def group_measurements(measurements):
 	index_processing = 11
 
 	# Sublists for Solis-Wets & ADADELTA
-	# Each sublist carries results for 32wi, 64wi, 128wi, 256wi
+	# Each sublist carries the entire entry for a pdb ordered by numwi
 	num_pdbs = 5
 	list_sw_1u4d, list_sw_1oyt, list_sw_1mzc, list_sw_3s8o, list_sw_2d1o  = [['0', '0', '0', '0'] for i in range(num_pdbs)]
 	list_ad_1u4d, list_ad_1oyt, list_ad_1mzc, list_ad_3s8o, list_ad_2d1o  = [['0', '0', '0', '0'] for i in range(num_pdbs)]
@@ -255,7 +255,42 @@ def group_measurements(measurements):
 			print('error!, \t%s' %(ls))
 
 	# Reorder docking times
+	# Sublists: pdb vs docking times (R)
+	R_sw_1u4d, R_sw_1oyt, R_sw_1mzc, R_sw_3s8o, R_sw_2d1o = [['0', '0', '0', '0', '0'] for i in range(num_pdbs)]
+	R_ad_1u4d, R_ad_1oyt, R_ad_1mzc, R_ad_3s8o, R_ad_2d1o = [['0', '0', '0', '0', '0'] for i in range(num_pdbs)]
+	R_sw_1u4d[0] = R_ad_1u4d[0] = '1u4d'
+	R_sw_1oyt[0] = R_ad_1oyt[0] = '1oyt'
+	R_sw_1mzc[0] = R_ad_1mzc[0] = '1mzc'
+	R_sw_3s8o[0] = R_ad_3s8o[0] = '3s8o'
+	R_sw_2d1o[0] = R_ad_2d1o[0] = '2d1o'
 
+	# CAUTION
+	# Might need to replaced range(4) for range(1),
+	# as some folders might contain results only for one case (numwi=32)
+	# instead of four ones (numwi={32, 64, 128, 256})
+	for i in range(4):
+		# SW
+		R_sw_1u4d[i+1] = list_sw_1u4d[i][index_time_docking]
+		R_sw_1oyt[i+1] = list_sw_1oyt[i][index_time_docking]
+		R_sw_1mzc[i+1] = list_sw_1mzc[i][index_time_docking]
+		R_sw_3s8o[i+1] = list_sw_3s8o[i][index_time_docking]
+		R_sw_2d1o[i+1] = list_sw_2d1o[i][index_time_docking]
+		# AD
+		R_ad_1u4d[i+1] = list_ad_1u4d[i][index_time_docking]
+		R_ad_1oyt[i+1] = list_ad_1oyt[i][index_time_docking]
+		R_ad_1mzc[i+1] = list_ad_1mzc[i][index_time_docking]
+		R_ad_3s8o[i+1] = list_ad_3s8o[i][index_time_docking]
+		R_ad_2d1o[i+1] = list_ad_2d1o[i][index_time_docking]
+
+	#print(R_sw_1u4d)
+	#print(R_ad_1u4d)
+
+	# Grouping & returning reordered docking times
+	reordered_sw_time_docking = []
+	reordered_sw_time_docking = [R_sw_1u4d] + [R_sw_1oyt] + [R_sw_1mzc] + [R_sw_3s8o] + [R_sw_2d1o]
+	reordered_ad_time_docking = []
+	reordered_ad_time_docking = [R_ad_1u4d] + [R_ad_1oyt] + [R_ad_1mzc] + [R_ad_3s8o] + [R_ad_2d1o]
+	return reordered_sw_time_docking, reordered_ad_time_docking
 
 def main():
 	# First argument is the log file
@@ -267,7 +302,15 @@ def main():
 	measurements = retrieve_runtimes(log_file, False) # True
 
 	# Group measurements
-	group_measurements(measurements)
+	reordered_sw_time_docking = []
+	reordered_ad_time_docking = []
+	reordered_sw_time_docking, reordered_ad_time_docking = group_measurements(measurements)
+
+	print(reordered_sw_time_docking[0])
+	print(reordered_sw_time_docking[1])
+	print(reordered_sw_time_docking[2])
+	print(reordered_sw_time_docking[3])
+	print(reordered_sw_time_docking[4])
 
 main()
 
