@@ -17,7 +17,14 @@ def retrieve_runtimes(filename):
 	# Metacharacter "+" is escaped with preceding "\"
 	label_start_measurement = "\+ ./autodock_"
 	searchpattern_start_measurement = "^" + label_start_measurement
-	index_cmd_name_dlg = -4 # Starts count from last element
+	index_cmd_name_dlg = -4 # Negative index: starts count from last element
+
+	# *.dlg filename is parsed to extract execution information
+	index_dlg_device = 5
+	index_dlg_numwi = 6
+	index_dlg_version = 7
+	index_dlg_pdb = 8
+	index_dlg_ls = 9
 
 	# Metacharacter "." matches any character except newline character
 	label_time_setup = "Setup time"
@@ -63,15 +70,23 @@ def retrieve_runtimes(filename):
 
 			if found_start_measurement:
 				print("\n")
-				split_line = re.split("\s", line)
-				name_dlg = split_line[index_cmd_name_dlg]
-				name_dlg = re.split("_", name_dlg)
-				print(split_line)
-				print(name_dlg)
-
 				found_new_measurement = True
 				count_new_measurement = count_new_measurement + 1
 				print("count_new_measurement: ", count_new_measurement)
+
+				split_line = re.split("\s", line) # Splits AD-GPU command based on the blank space character
+				name_dlg = split_line[index_cmd_name_dlg]
+				name_dlg = re.split("_", name_dlg) # Splits dlg filename based on the underscore "_" character
+				device = name_dlg[index_dlg_device]
+				numwi = name_dlg[index_dlg_numwi]
+				version = name_dlg[index_dlg_version]
+				pdb = name_dlg[index_dlg_pdb]
+				ls = name_dlg[index_dlg_ls]
+				print("Device:\t", device)
+				print("NUMWI:\t", numwi)
+				print("Version:\t", version)
+				print("Test case:\t", pdb)
+				print("Local search:\t", ls)
 
 			if found_time_setup:
 				split_line = re.split("\s", line)
