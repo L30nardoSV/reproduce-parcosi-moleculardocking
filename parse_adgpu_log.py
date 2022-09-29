@@ -14,6 +14,11 @@ def parse_filename(filename):
 def retrieve_runtimes(filename):
 	"""Retrieve runtimes (s) from log file"""
 
+	# Metacharacter "+" should be escaped
+	label_start_measurement = "\+ ./autodock_g"
+	searchpattern_start_measurement = "^" + label_start_measurement
+
+	# Metacharacter "^" forces searching for a line starting with search pattern
 	label_time_restofsetup = "Rest of Setup time"
 	searchpattern_time_restofsetup = "^" + label_time_restofsetup
 	index_time_restofsetup = 4
@@ -32,14 +37,21 @@ def retrieve_runtimes(filename):
 
 	with open(filename, "rt") as myfile:	# open file for reading text
 		lines = myfile.readlines()
-#		found_new_measurement = False
-#		count_new_measurement = 0
+
+		found_new_measurement = False
+		count_new_measurement = 0
 
 		for line in lines:
+			found_start_measurement = re.search(searchpattern_start_measurement, line)
 			found_time_restofsetup = re.search(searchpattern_time_restofsetup, line)
 			found_time_docking = re.search(searchpattern_time_docking, line)
 			found_time_shutdown = re.search(searchpattern_time_shutdown, line)
 			found_time_processing = re.search(searchpattern_time_processing, line)
+
+			if found_start_measurement:
+				found_new_measurement = True
+				count_new_measurement = count_new_measurement + 1
+				print("count_new_measurement: ", count_new_measurement)
 
 			if found_time_restofsetup:
 				split_line = re.split("\s", line)
@@ -60,13 +72,6 @@ def retrieve_runtimes(filename):
 				split_line = re.split("\s", line)
 				time_processing = split_line[index_time_processing]
 				print(label_time_processing, ":\t", time_processing)
-
-#			if line.startswith('+ ./autodock_gpu_'):
-#				found_new_measurement = True
-#				count_new_measurement = count_new_measurement + 1
-#				print("count_new_measurement: ", count_new_measurement)
-
-
 
 def main():
 	# First argument is the log file
