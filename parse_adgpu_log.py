@@ -117,7 +117,8 @@ def retrieve_runtimes(filename):
 				split_line = re.split("\s", line)
 				time_job = split_line[index_time_job]
 				time_job_wait = split_line[index_time_job_wait]
-				print("Job time & wait time", ":\t", time_job, "\t", time_job_wait)
+				print("Job time", ":\t", time_job)
+				print("Job wait time", ":\t", time_job_wait)
 
 			if found_time_processing:
 				split_line = re.split("\s", line)
