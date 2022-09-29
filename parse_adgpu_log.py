@@ -69,21 +69,25 @@ def retrieve_runtimes(filename):
 				split_line = re.split("\s", line)
 				if split_line[0] != "Rest":	# Avoids matching pattern "found_time_restofsetup"
 					time_setup = split_line[index_time_setup]
+					time_setup = re.sub("s$", " ", time_setup) # Replaces trailing "s" character with blank space
 					print(split_line[0] + " " + label_time_setup, ":\t", time_setup) # Prints CUDA/OpenCL/DPC++ label at the beginning
 
 			if found_time_restofsetup:
 				split_line = re.split("\s", line)
 				time_restofsetup = split_line[index_time_restofsetup]
+				time_restofsetup = re.sub("s$", " ", time_restofsetup) # Replaces trailing "s" character with blank space
 				print(label_time_restofsetup, ":\t", time_restofsetup)
 
 			if found_time_docking:
 				split_line = re.split("\s", line)
 				time_docking = split_line[index_time_docking]
+				time_docking = re.sub("s$", " ", time_docking) # Replaces trailing "s" character with blank space
 				print(label_time_docking, ":\t", time_docking)
 
 			if found_time_shutdown:
 				split_line = re.split("\s", line)
 				time_shutdown = split_line[index_time_shutdown]
+				time_shutdown = re.sub("s$", " ", time_shutdown) # Replaces trailing "s" character with blank space
 				print(label_time_shutdown, ":\t", time_shutdown)
 
 			if found_time_job:
