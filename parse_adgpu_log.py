@@ -159,6 +159,7 @@ def retrieve_runtimes(filename, is_print_enabled):
 def group_measurements(measurements):
 	#print(measurements)
 
+	# Indexes within measurement lists
 	index_device = 0
 	index_numwi = 1
 	index_version = 2
@@ -172,7 +173,88 @@ def group_measurements(measurements):
 	index_time_job_wait = 10
 	index_processing = 11
 
-	#for idx in measurements:
+	# Sublists for Solis-Wets & ADADELTA
+	# Each sublist carries results for 32wi, 64wi, 128wi, 256wi
+	num_pdbs = 5
+	list_sw_1u4d, list_sw_1oyt, list_sw_1mzc, list_sw_3s8o, list_sw_2d1o  = [['0', '0', '0', '0'] for i in range(num_pdbs)]
+	list_ad_1u4d, list_ad_1oyt, list_ad_1mzc, list_ad_3s8o, list_ad_2d1o  = [['0', '0', '0', '0'] for i in range(num_pdbs)]
+
+	for idx in measurements:
+		pdb = idx[index_pdb]
+		numwi = idx[index_numwi]
+		ls = idx[index_ls]
+		time_docking = idx[index_time_docking]
+
+		if ls == 'sw':
+			if pdb == '1u4d':
+				if   numwi == '32wi' : list_sw_1u4d[0] = idx
+				elif numwi == '64wi' : list_sw_1u4d[1] = idx
+				elif numwi == '128wi': list_sw_1u4d[2] = idx
+				elif numwi == '256wi': list_sw_1u4d[3] = idx
+				else: print('error')
+			elif pdb == '1oyt':
+				if   numwi == '32wi' : list_sw_1oyt[0] = idx
+				elif numwi == '64wi' : list_sw_1oyt[1] = idx
+				elif numwi == '128wi': list_sw_1oyt[2] = idx
+				elif numwi == '256wi': list_sw_1oyt[3] = idx
+				else: print('error')
+			elif pdb == '1mzc':
+				if   numwi == '32wi' : list_sw_1mzc[0] = idx
+				elif numwi == '64wi' : list_sw_1mzc[1] = idx
+				elif numwi == '128wi': list_sw_1mzc[2] = idx
+				elif numwi == '256wi': list_sw_1mzc[3] = idx
+				else: print('error')
+			elif pdb == '3s8o':
+				if   numwi == '32wi' : list_sw_3s8o[0] = idx
+				elif numwi == '64wi' : list_sw_3s8o[1] = idx
+				elif numwi == '128wi': list_sw_3s8o[2] = idx
+				elif numwi == '256wi': list_sw_3s8o[3] = idx
+				else: print('error')
+			elif pdb == '2d1o':
+				if   numwi == '32wi' : list_sw_2d1o[0] = idx
+				elif numwi == '64wi' : list_sw_2d1o[1] = idx
+				elif numwi == '128wi': list_sw_2d1o[2] = idx
+				elif numwi == '256wi': list_sw_2d1o[3] = idx
+				else: print('error')
+			else:
+				print('error!, \t%s, \t%f' %(pdb, time_docking))
+		elif ls == 'ad':
+			if pdb == '1u4d':
+				if   numwi == '32wi' : list_ad_1u4d[0] = idx
+				elif numwi == '64wi' : list_ad_1u4d[1] = idx
+				elif numwi == '128wi': list_ad_1u4d[2] = idx
+				elif numwi == '256wi': list_ad_1u4d[3] = idx
+				else: print('error')
+			elif pdb == '1oyt':
+				if   numwi == '32wi' : list_ad_1oyt[0] = idx
+				elif numwi == '64wi' : list_ad_1oyt[1] = idx
+				elif numwi == '128wi': list_ad_1oyt[2] = idx
+				elif numwi == '256wi': list_ad_1oyt[3] = idx
+				else: print('error')
+			elif pdb == '1mzc':
+				if   numwi == '32wi' : list_ad_1mzc[0] = idx
+				elif numwi == '64wi' : list_ad_1mzc[1] = idx
+				elif numwi == '128wi': list_ad_1mzc[2] = idx
+				elif numwi == '256wi': list_ad_1mzc[3] = idx
+				else: print('error')
+			elif pdb == '3s8o':
+				if   numwi == '32wi' : list_ad_3s8o[0] = idx
+				elif numwi == '64wi' : list_ad_3s8o[1] = idx
+				elif numwi == '128wi': list_ad_3s8o[2] = idx
+				elif numwi == '256wi': list_ad_3s8o[3] = idx
+				else: print('error')
+			elif pdb == '2d1o':
+				if   numwi == '32wi' : list_ad_2d1o[0] = idx
+				elif numwi == '64wi' : list_ad_2d1o[1] = idx
+				elif numwi == '128wi': list_ad_2d1o[2] = idx
+				elif numwi == '256wi': list_ad_2d1o[3] = idx
+				else: print('error')
+			else:
+				print('error!, \t%s, \t%f' %(pdb, time_docking))
+		else:
+			print('error!, \t%s' %(ls))
+
+	# Reorder docking times
 
 
 def main():
