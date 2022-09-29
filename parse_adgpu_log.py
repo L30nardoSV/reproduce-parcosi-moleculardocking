@@ -51,7 +51,7 @@ def retrieve_runtimes(filename):
 			if found_start_measurement:
 				found_new_measurement = True
 				count_new_measurement = count_new_measurement + 1
-				print("count_new_measurement: ", count_new_measurement)
+				print("\ncount_new_measurement: ", count_new_measurement)
 
 			if found_time_restofsetup:
 				split_line = re.split("\s", line)
