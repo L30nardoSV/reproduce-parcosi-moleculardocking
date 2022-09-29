@@ -1,6 +1,8 @@
 import sys
 import os
 import re
+import csv
+import pandas as pd
 
 def parse_filename(filename):
 	"""Parse file name"""
@@ -292,6 +294,36 @@ def group_measurements(measurements):
 	reordered_ad_time_docking = [R_ad_1u4d] + [R_ad_1oyt] + [R_ad_1mzc] + [R_ad_3s8o] + [R_ad_2d1o]
 	return reordered_sw_time_docking, reordered_ad_time_docking
 
+def write_outputs(list_sw, list_ad):
+	filename_sw = 'dockingtime_sw'
+	filename_ad = 'dockingtime_ad'
+	file_sw_csv = filename_sw + '.csv'
+	file_ad_csv = filename_ad + '.csv'
+	file_sw_txt = filename_sw + '.txt'
+	file_ad_txt = filename_ad + '.txt'
+	file_sw_excel = filename_sw + '.xlsx'
+	file_ad_excel = filename_ad + '.xlsx'
+
+	with open(file_sw_csv, 'w', newline='') as file:
+		writer = csv.writer(file)
+		writer.writerow(["pdb", "32wi", "64wi", "128wi", "256wi"])
+		for row in list_sw:
+			writer.writerow(row)
+
+	with open(file_ad_csv, 'w', newline='') as file:
+		writer = csv.writer(file)
+		writer.writerow(["pdb", "32wi", "64wi", "128wi", "256wi"])
+		for row in list_ad:
+			writer.writerow(row)
+
+	# Changing file extension: from csv into txt
+	os.rename(file_sw_csv, file_sw_txt)
+	os.rename(file_ad_csv, file_ad_txt)
+
+	# Transforming files: from txt into excel
+	pd.read_csv(file_sw_txt, delimiter=",").to_excel(file_sw_excel, index=False)
+	pd.read_csv(file_ad_txt, delimiter=",").to_excel(file_ad_excel, index=False)
+
 def main():
 	# First argument is the log file
 	log_file = sys.argv[1]
@@ -306,11 +338,8 @@ def main():
 	reordered_ad_time_docking = []
 	reordered_sw_time_docking, reordered_ad_time_docking = group_measurements(measurements)
 
-	print(reordered_sw_time_docking[0])
-	print(reordered_sw_time_docking[1])
-	print(reordered_sw_time_docking[2])
-	print(reordered_sw_time_docking[3])
-	print(reordered_sw_time_docking[4])
+	# Write output
+	write_outputs(reordered_sw_time_docking, reordered_ad_time_docking)
 
 main()
 
