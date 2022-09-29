@@ -53,14 +53,12 @@ def retrieve_runtimes(filename):
 	searchpattern_time_processing = "^" + label_time_processing
 	index_time_processing = 2
 
-	#
+	# Lists for collecting all measurements
 	num_of_entries_per_dlg = 40
 	num_measurements_per_entry = 12
 	num_elements_per_entry = num_measurements_per_entry
 	list_measurements = [['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'] for i in range(num_of_entries_per_dlg)]
-
-
-	print(list_measurements)
+	#print(list_measurements)
 
 	with open(filename, "rt") as myfile:	# open file for reading text
 		lines = myfile.readlines()
@@ -79,7 +77,7 @@ def retrieve_runtimes(filename):
 			if found_start_measurement:
 				print("\n")
 				found_new_measurement = True
-				print("count_new_measurement: ", count_new_measurement)
+				print("# measurement: ", count_new_measurement)
 
 				split_line = re.split("\s", line) # Splits AD-GPU command based on the blank space character
 				name_dlg = split_line[index_cmd_name_dlg]
