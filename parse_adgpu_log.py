@@ -156,6 +156,25 @@ def retrieve_runtimes(filename, is_print_enabled):
 
 	return list_measurements
 
+def group_measurements(measurements):
+	#print(measurements)
+
+	index_device = 0
+	index_numwi = 1
+	index_version = 2
+	index_pdb = 3
+	index_ls = 4
+	index_time_setup = 5
+	index_time_restofsetup = 6
+	index_time_docking = 7
+	index_time_shutdown = 8
+	index_time_job = 9
+	index_time_job_wait = 10
+	index_processing = 11
+
+	#for idx in measurements:
+
+
 def main():
 	# First argument is the log file
 	log_file = sys.argv[1]
@@ -164,7 +183,9 @@ def main():
 	# Extract measurements
 	measurements = []
 	measurements = retrieve_runtimes(log_file, False) # True
-	print(measurements)
+
+	# Group measurements
+	group_measurements(measurements)
 
 main()
 
