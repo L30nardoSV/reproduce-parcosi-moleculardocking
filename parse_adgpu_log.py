@@ -17,6 +17,7 @@ def retrieve_runtimes(filename):
 	# Metacharacter "+" is escaped with preceding "\"
 	label_start_measurement = "\+ ./autodock_"
 	searchpattern_start_measurement = "^" + label_start_measurement
+	index_cmd_name_dlg = -4 # Starts count from last element
 
 	# Metacharacter "." matches any character except newline character
 	label_time_setup = "Setup time"
@@ -61,9 +62,16 @@ def retrieve_runtimes(filename):
 			found_time_processing = re.search(searchpattern_time_processing, line)
 
 			if found_start_measurement:
+				print("\n")
+				split_line = re.split("\s", line)
+				name_dlg = split_line[index_cmd_name_dlg]
+				name_dlg = re.split("_", name_dlg)
+				print(split_line)
+				print(name_dlg)
+
 				found_new_measurement = True
 				count_new_measurement = count_new_measurement + 1
-				print("\ncount_new_measurement: ", count_new_measurement)
+				print("count_new_measurement: ", count_new_measurement)
 
 			if found_time_setup:
 				split_line = re.split("\s", line)
