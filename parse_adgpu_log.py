@@ -154,11 +154,17 @@ def retrieve_runtimes(filename, is_print_enabled):
 					found_new_measurement = False
 					count_new_measurement = count_new_measurement + 1
 
+	return list_measurements
+
 def main():
 	# First argument is the log file
 	log_file = sys.argv[1]
 	parse_filename(log_file)
-	retrieve_runtimes(log_file, False) # True
+
+	# Extract measurements
+	measurements = []
+	measurements = retrieve_runtimes(log_file, False) # True
+	print(measurements)
 
 main()
 
