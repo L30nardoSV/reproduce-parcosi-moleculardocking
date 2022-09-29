@@ -36,6 +36,11 @@ def retrieve_runtimes(filename):
 	searchpattern_time_shutdown = "^" + label_time_shutdown
 	index_time_shutdown = 2
 
+	label_time_job = "Job #[0-9]"
+	searchpattern_time_job = "^" + label_time_job
+	index_time_job = 3
+	index_time_job_wait = 7
+
 	label_time_processing = "Processing time"
 	searchpattern_time_processing = "^" + label_time_processing
 	index_time_processing = 2
@@ -52,6 +57,7 @@ def retrieve_runtimes(filename):
 			found_time_restofsetup = re.search(searchpattern_time_restofsetup, line)
 			found_time_docking = re.search(searchpattern_time_docking, line)
 			found_time_shutdown = re.search(searchpattern_time_shutdown, line)
+			found_time_job = re.search(searchpattern_time_job, line)
 			found_time_processing = re.search(searchpattern_time_processing, line)
 
 			if found_start_measurement:
@@ -79,6 +85,12 @@ def retrieve_runtimes(filename):
 				split_line = re.split("\s", line)
 				time_shutdown = split_line[index_time_shutdown]
 				print(label_time_shutdown, ":\t", time_shutdown)
+
+			if found_time_job:
+				split_line = re.split("\s", line)
+				time_job = split_line[index_time_job]
+				time_job_wait = split_line[index_time_job_wait]
+				print("Job time & wait time", ":\t", time_job, "\t", time_job_wait)
 
 			if found_time_processing:
 				split_line = re.split("\s", line)
