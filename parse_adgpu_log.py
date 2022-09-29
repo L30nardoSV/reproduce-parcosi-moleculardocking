@@ -14,7 +14,7 @@ def parse_filename(filename):
 def retrieve_runtimes(filename):
 	"""Retrieve runtimes (s) from log file"""
 
-	# Metacharacter "+" should be escaped
+	# Metacharacter "+" is escaped with preceding "\"
 	label_start_measurement = "\+ ./autodock_"
 	searchpattern_start_measurement = "^" + label_start_measurement
 
