@@ -56,14 +56,14 @@ function select_device() {
 
 	printf '\n%s\n' "Type a meaningful label for your CPU/GPU device."
 	read -p "E.g.: [xeon] [a100] [pvc] [gen9] [etc]: " DEV_LABEL
-	RES_GPU_DIR=r_${DEVTYPE_LABEL}_${DEV_LABEL}_${EARLY_TERM_LABEL}_${VERSION_LABEL}
+	RES_DIR=r_${DEVTYPE_LABEL}_${DEV_LABEL}_${EARLY_TERM_LABEL}_${VERSION_LABEL}
 
-	if [ ! -d ${RES_GPU_DIR} ]; then
-		mkdir ${RES_GPU_DIR}
-		printf '%s\n' " -> \"${RES_GPU_DIR}\" folder will store results"
-		printf '%s\n' " -> \"${RES_GPU_DIR}.log\" file will contain stderr and stdout logs"
+	if [ ! -d ${RES_DIR} ]; then
+		mkdir ${RES_DIR}
+		printf '%s\n' " -> \"${RES_DIR}\" folder will store results"
+		printf '%s\n' " -> \"${RES_DIR}.log\" file will contain stderr and stdout logs"
 	else
-		printf '%s\n' " -> \"${RES_GPU_DIR}\" folder already exists. Be cautious!"
+		printf '%s\n' " -> \"${RES_DIR}\" folder already exists. Be cautious!"
 	fi
 }
 

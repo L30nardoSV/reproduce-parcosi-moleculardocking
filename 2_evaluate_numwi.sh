@@ -28,4 +28,4 @@ verify_binaries_exist_in_local_folder
 			numwi ${i_adgpu_bin}
 		done
 	fi
-) 2>&1 | tee ${RES_GPU_DIR}.log
+) 2>&1 | tee ${RES_DIR}.log

@@ -26,7 +26,7 @@ function numwi() {
 				-xmloutput 0 \
 				-autostop ${EARLY_TERM_ARG} \
 				-heuristics ${EARLY_TERM_ARG} \
-				-resnam ${RES_GPU_DIR}/$1_${ipdb}_${ilsmet}_"`date +"%Y-%m-%d-%H:%M"`" \
+				-resnam ${RES_DIR}/$1_${ipdb}_${ilsmet}_"`date +"%Y-%m-%d-%H:%M"`" \
 				-devnum ${DEVNUM}
 			)
 		done
