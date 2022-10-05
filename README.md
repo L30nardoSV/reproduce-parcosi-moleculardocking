@@ -60,7 +60,7 @@ export GPU_LIBRARY_PATH=/usr/local/cuda/lib64
 
 Compile codes, rename the produced binaries conveniently (for the experiment scripts to work), and move generated binaries into the experiments folder:
 
-**OpenCL**
+##### OpenCL
 
 
 GPU:
@@ -81,7 +81,7 @@ make DEVICE=CPU NUMWI=128 && mv bin/autodock_cpu_128wi bin/autodock_cpu_128wi_oc
 make DEVICE=CPU NUMWI=256 && mv bin/autodock_cpu_256wi bin/autodock_cpu_256wi_ocl && cp bin/autodock_cpu_256wi_ocl ../experiments-adgpu-dpcpp/
 ```
 
-**CUDA**
+##### CUDA
 
 CUDA code for modern NVIDIA GPU architectures might require to also specify their compute capability via the `TARGETS="XX"` compile option. See [reference](https://github.com/ccsb-scripps/AutoDock-GPU/issues/172#issuecomment-1010263229).
 
