@@ -8,6 +8,7 @@ source ${AUXILIARY_SCRIPTS_DIR}/numwi.sh
 
 ADGPU_CUDA_BINS=(./autodock_gpu_32wi_cuda ./autodock_gpu_64wi_cuda ./autodock_gpu_128wi_cuda ./autodock_gpu_256wi_cuda)
 ADGPU_OPENCL_BINS=(./autodock_gpu_32wi_ocl ./autodock_gpu_64wi_ocl ./autodock_gpu_128wi_ocl ./autodock_gpu_256wi_ocl)
+ADGPU_OPENCL_CPU_BINS=(./autodock_cpu_32wi_ocl ./autodock_cpu_64wi_ocl ./autodock_cpu_128wi_ocl ./autodock_cpu_256wi_ocl)
 ADGPU_DPCPP_BINS=(./autodock_xegpu_32wi_dpcpp ./autodock_xegpu_64wi_dpcpp ./autodock_xegpu_128wi_dpcpp ./autodock_xegpu_256wi_dpcpp)
 
 # Main execution
