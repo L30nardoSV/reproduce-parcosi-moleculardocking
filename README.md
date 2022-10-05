@@ -53,10 +53,20 @@ git checkout v1.5.3
 
 Set environment variables (adapt the paths to your systems' installation):
 
+GPU:
+
 ```
 export GPU_INCLUDE_PATH=/usr/local/cuda/include
 export GPU_LIBRARY_PATH=/usr/local/cuda/lib64
 ```
+
+CPU:
+
+```
+export CPU_INCLUDE_PATH=<Path of OpenCL header files>
+export CPU_LIBRARY_PATH=<Path of libOpenCL.so>
+```
+
 
 Compile codes, rename the produced binaries conveniently (for the experiment scripts to work), and move generated binaries into the experiments folder:
 
