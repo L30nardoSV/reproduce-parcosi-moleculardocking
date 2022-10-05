@@ -62,11 +62,23 @@ Compile codes, rename the produced binaries conveniently (for the experiment scr
 
 **OpenCL**
 
+
+GPU:
+
 ```
 make DEVICE=OCLGPU NUMWI=32 && mv bin/autodock_gpu_32wi bin/autodock_gpu_32wi_ocl && cp bin/autodock_gpu_32wi_ocl ../experiments-adgpu-dpcpp/
 make DEVICE=OCLGPU NUMWI=64 && mv bin/autodock_gpu_64wi bin/autodock_gpu_64wi_ocl && cp bin/autodock_gpu_64wi_ocl ../experiments-adgpu-dpcpp/
 make DEVICE=OCLGPU NUMWI=128 && mv bin/autodock_gpu_128wi bin/autodock_gpu_128wi_ocl && cp bin/autodock_gpu_128wi_ocl ../experiments-adgpu-dpcpp/
 make DEVICE=OCLGPU NUMWI=256 && mv bin/autodock_gpu_256wi bin/autodock_gpu_256wi_ocl && cp bin/autodock_gpu_256wi_ocl ../experiments-adgpu-dpcpp/
+```
+
+CPU:
+
+```
+make DEVICE=CPU NUMWI=32 && mv bin/autodock_cpu_32wi bin/autodock_cpu_32wi_ocl && cp bin/autodock_cpu_32wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=CPU NUMWI=64 && mv bin/autodock_cpu_64wi bin/autodock_cpu_64wi_ocl && cp bin/autodock_cpu_64wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=CPU NUMWI=128 && mv bin/autodock_cpu_128wi bin/autodock_cpu_128wi_ocl && cp bin/autodock_cpu_128wi_ocl ../experiments-adgpu-dpcpp/
+make DEVICE=CPU NUMWI=256 && mv bin/autodock_cpu_256wi bin/autodock_cpu_256wi_ocl && cp bin/autodock_cpu_256wi_ocl ../experiments-adgpu-dpcpp/
 ```
 
 **CUDA**
