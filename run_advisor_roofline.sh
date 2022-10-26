@@ -105,10 +105,6 @@ run_gpu_roofline() {
 	cmd_roofline_ad_1="${cmd_roofline_shorcut} --project-dir=${output_folder_ad} -- ${adgpu_cmd_ad}"
 	cmd_roofline_ad_2="${cmd_perfmodeling} --project-dir=${output_folder_ad}"
 
-#	local cmd_local_sw="${cmd_roofline_sw_1} && ${cmd_roofline_sw_2}"
-#	local cmd_local_ad="${cmd_roofline_ad_1} && ${cmd_roofline_ad_2}"
-#	run_cmd "${cmd_local_sw}" "${cmd_local_ad}"
-
 	run_cmd "${cmd_roofline_sw_1}"
 	run_cmd "${cmd_roofline_sw_2}"
 
