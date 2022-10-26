@@ -68,8 +68,8 @@ define_executable() {
 		printf "\n" && echo $0 && exit 1
 	fi
 
-	adgpu_cmd_sw="${adgpu_binary} -ffile ${input_protein} -lfile ${input_ligand} -nrun 20 -lsmet sw --heuristics 0 --autostop 0"
-	adgpu_cmd_ad="${adgpu_binary} -ffile ${input_protein} -lfile ${input_ligand} -nrun 20 -lsmet ad --heuristics 0 --autostop 0"
+	adgpu_cmd_sw="${adgpu_binary} -ffile ${input_protein} -lfile ${input_ligand} -nrun 10 -lsmet sw --heuristics 0 --autostop 0"
+	adgpu_cmd_ad="${adgpu_binary} -ffile ${input_protein} -lfile ${input_ligand} -nrun 10 -lsmet ad --heuristics 0 --autostop 0"
 
 	printf "\nAutoDock-GPU commands: "
 	printf "\n${adgpu_cmd_sw}"
