@@ -148,9 +148,19 @@ python3 -mvenv env
 source env/bin/activate
 ```
 
+---
+
+Two alternatives:
+
 ```
 python3 parse_adgpu_dlg.py <folder>
 ```
+
+```
+python3 parse_adgpu_log.py <log_file>
+```
+
+---
 
 ```
 deactivate
